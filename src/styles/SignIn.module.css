@@ -1,0 +1,47 @@
+.holder {
+    background-color: transparent;
+    margin: 5vh 5vw 5vh 5vw;
+    display: flex;
+    height: 90vh;
+}
+
+.left {
+    width: calc(90vw - 90vh);
+    background-color: var(--background-content-color);
+    border-radius: 10px 0 0 10px;
+    padding: 1vh 2vw;
+}
+
+.right {
+    height: 100%;
+    width: 90vh;
+    border-radius: 0 10px 10px 0;
+    position: relative;
+}
+
+.right img{
+    border-radius: 0 10px 10px 0;
+}
+
+.main {
+    height: 100vh;
+}
+
+.boxShadow {
+    position: absolute;
+    top: 5.1vh;
+    left: 5.1vw;
+    width: 89.8vw;
+    height: 89.8vh;
+    box-shadow: 4px 3px 8px 4px rgba(0, 0, 0, 0.25);
+    z-index: -1;
+    border-radius: 10px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 10px;
+    filter: invert(1);
+}
