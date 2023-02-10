@@ -27,7 +27,7 @@ export default function SignIn({ providers }) {
         </div>
             
         <div className={styles.right}>
-            <Image src={loginImage} alt="login_image" fill={true}/>
+            <Image src={loginImage} alt="login_image" style={{objectFit: 'fill', maxWidth: '100%', maxHeight: '100%'}}/>
         </div>
       </div>
 

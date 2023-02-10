@@ -45,3 +45,45 @@
     margin-bottom: 10px;
     filter: invert(1);
 }
+
+@media (max-width: 1100px) {
+    .holder {
+        margin: max(5vh, var(--margin-169) ) max(5px, 5vw);
+        height: calc(100vh - calc(2 * max(5vh, var(--margin-169) ))) ;
+    }
+
+    .left {
+        width: calc(100vw - calc(calc(2*max(5px, 5vw))) - calc(100vh - calc(2 * max(5vh, var(--margin-169) ))));
+    }
+
+    .boxShadow {
+        height: calc(99.8vh - calc(2 * max(5vh, var(--margin-169) ))) ;
+        top: calc(max(5vh, var(--margin-169) ) + 0.1vh);
+        left: calc(max(5px, 5vw) + 0.1vw);
+    }
+}
+
+@media (max-width: 900px) {
+    .holder {
+        margin: 5vh 5vw 5vh 5vw;
+        height: 90vh;
+    }
+
+    .right {
+        display: none;
+        width: 0;
+    }
+
+    .left {
+        width: 90vw;
+        border-radius: 10px;
+    }
+
+    .boxShadow {
+        height: 90vh;
+        margin: 0;
+        top: 5.1vh;
+        left: 5.1vw;
+        display: none;
+    }
+}
