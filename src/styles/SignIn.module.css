@@ -42,8 +42,57 @@
     display: flex;
     justify-content: center;
     position: relative;
-    margin-bottom: 10px;
+    margin: 10px 0;
     filter: invert(1);
+}
+
+.inputDiv {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.label {
+    margin-bottom: 2px;
+}
+
+.inputSpace {
+    background-color: var(--background-content-color);
+    border-color: rgb(202, 202, 202);
+    border-radius: 5px;
+    border-width: 1px;
+    padding: 2px 10px;
+    height: 30px;
+}
+
+.form {
+    margin-top: 40px;
+}
+
+.buttonarea {
+    display: flex;
+    flex-direction: row;
+}
+
+.buttonarea p {
+    margin-left: 10px;
+}
+
+.orSpace {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5vh 0;
+}
+
+.orSpace span {
+    margin: 0 10px;
+}
+
+.horizontalBar {
+    height: 1px;
+    width: 20%;
+    border-top: 1px solid rgb(202, 202, 202);
 }
 
 @media (max-width: 1100px) {
