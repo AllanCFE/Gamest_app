@@ -81,12 +81,14 @@ export default function SignIn({ providers }) {
               </span>
             </div>
 
-            <div className={styles.socialMedia}>
-              Object.values(providers).map((provider) => (
-                <div>
-                  {provider.name}
+            <div className={styles.providersMenu}>
+              {Object.values(providers).map((provider) => (
+                <div className={provider.name != "Credentials" ? styles.providerLoginButton : styles.hide}>
+                  <span className={styles.providerLogo}>
+                    Log In with {provider.name}
+                  </span>
                 </div>
-              ))
+              ))}
             </div>
 
         </div>
