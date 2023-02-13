@@ -1,0 +1,26 @@
+.nav {
+    height: 7vh;
+    min-height: 40px;
+    max-height: 60px;
+    background-color: var(--background-content-color);
+    padding: 5px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    background-color: red;
+}
+
+.menuOptions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: blue;
+}
+
+.option {
+    margin-right: 20px;
+}

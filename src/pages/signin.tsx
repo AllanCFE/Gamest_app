@@ -2,10 +2,6 @@ import { getProviders, signIn, getSession } from "next-auth/react";
 import styles from '@/styles/SignIn.module.css';
 import Image from "next/image";
 import { useState } from 'react';
-
-import { useFormik } from 'formik';
-import * as yup from 'yup';
-
 import GamestLogo from '../../public/Logos/Gamest.png'
 import loginImage from '../../public/login_img.png'
 import GoogleLogo from '../../public/SignIn/Google.png'
