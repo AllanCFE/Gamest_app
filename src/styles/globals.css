@@ -3,7 +3,11 @@
   --background-content-color: #f0f0f0;
   --font-color: #212427;
 
-  --margin-169: calc(calc(50vh) - calc(900vw/32))
+  --margin-169: calc(calc(50vh) - calc(900vw/32));
+
+  --font-titles: MontserratArabic;
+  --font-subtitles: RudaBlack;
+  --font-paragraphs: Questrial;
 }
 
 * {
@@ -16,6 +20,7 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  font-family: -apple-system, Questrial, RudaBlack, MontserratArabic, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 body {
@@ -26,4 +31,19 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+@font-face {
+  font-family: "MontserratArabic";
+  src: url("/Fonts/montserrat-arabic_semibold-webfont.woff") format("woff");
+}
+
+@font-face {
+  font-family: "RudaBlack";
+  src: url("/Fonts/ruda-black-webfont.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Questrial";
+  src: url("/Fonts/questrial-regular-webfont.woff") format("woff");
 }

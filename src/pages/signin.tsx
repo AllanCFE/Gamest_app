@@ -8,6 +8,7 @@ import * as yup from 'yup';
 
 import GamestLogo from '../../public/Logos/Gamest.png'
 import loginImage from '../../public/login_img.png'
+import GoogleLogo from '../../public/SignIn/Google.png'
 
 /*
 Object.values(providers).map((provider) => (
@@ -59,11 +60,17 @@ export default function SignIn({ providers }) {
                     className={styles.inputSpace}
                   />
                 </div>
+                <span className={styles.forgotPassword}>
+                  <a href="/retrievePassword">Esqueci minha senha</a>
+                </span>
 
                 <div className={styles.buttonarea}>
-                  <button type="submit">Login</button>
-                  <p>Esqueci minha senha</p>
+                  <button className={styles.loginButton} type="submit">Login</button>
                 </div>
+
+                <span className={styles.registerArea}>
+                  Ainda não tem uma conta? <a href="/signup"> Cadastre-se aqui </a>
+                </span>
 
               </form>
             </div>
@@ -85,6 +92,11 @@ export default function SignIn({ providers }) {
               {Object.values(providers).map((provider) => (
                 <div className={provider.name != "Credentials" ? styles.providerLoginButton : styles.hide}>
                   <span className={styles.providerLogo}>
+                      {provider.name != "Credentials" ? 
+                        <Image src={GoogleLogo} alt="google_logo" style={{objectFit: 'contain', maxWidth: '30px', maxHeight: '30px'}}/> : ""
+                      }
+                  </span>
+                  <span>
                     Log In with {provider.name}
                   </span>
                 </div>
