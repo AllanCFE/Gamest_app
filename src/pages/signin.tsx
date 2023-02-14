@@ -6,14 +6,7 @@ import GamestLogo from '../../public/Logos/Gamest.png'
 import loginImage from '../../public/login_img.png'
 import GoogleLogo from '../../public/SignIn/Google.png'
 
-/*
-Object.values(providers).map((provider) => (
-  <span className={styles.logo}>
-    <Image src="/vercel.svg" alt={provider.id} width={90} height={20} onClick={() => signIn(provider.id)}/>
-  </span>
-))
-*/
-export default function SignIn({ providers }) {
+export default function SignIn({ providers }: { providers: any }) {
   /*Object.values(providers).map((provider) => (
     console.log(provider)
   ))*/
@@ -85,14 +78,14 @@ export default function SignIn({ providers }) {
             </div>
 
             <div className={styles.providersMenu}>
-              {Object.values(providers).map((provider) => (
-                <div className={provider.name != "Credentials" ? styles.providerLoginButton : styles.hide} onClick={() => signIn(provider.id)}>
-                  <span className={styles.providerLogo}>
+              {Object.values(providers).map((provider:any) => (
+                <div key={provider} className={provider.name != "Credentials" ? styles.providerLoginButton : styles.hide} onClick={() => signIn(provider.id)}>
+                  <span className={styles.providerLogo} key={provider} >
                       {provider.name != "Credentials" ? 
-                        <Image src={GoogleLogo} alt="google_logo" style={{objectFit: 'contain', maxWidth: '30px', maxHeight: '30px'}}/> : ""
+                        <Image src={GoogleLogo} alt="google_logo" style={{objectFit: 'contain', maxWidth: '30px', maxHeight: '30px'}} key={provider} /> : ""
                       }
                   </span>
-                  <span>
+                  <span key={provider} >
                     Log In with {provider.name}
                   </span>
                 </div>
@@ -112,7 +105,7 @@ export default function SignIn({ providers }) {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context:any) {
   const providers = await getProviders()
   const {req,res} = context
   const session = await getSession({req})

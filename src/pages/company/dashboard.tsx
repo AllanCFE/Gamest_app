@@ -1,12 +1,12 @@
 import Navbar from '../../../components/Navbar/Navbar'
-import { signOut, getSession, useSession } from 'next-auth/react'
 import styles from '../../styles/company/Dashboard.module.css'
 import Image from 'next/image'
-
-// <h1 onClick={() => signOut({ callbackUrl: '/signin' })}>Dashboard</h1>
+import userRequireAuth from 'components/useRequireAuth/useRequireAuth'
 
 export default function Dashboard () {
-    const { data: session } = useSession()
+
+    const session = userRequireAuth();
+    if (!session) return <div>Loading...</div>
 
     return (
         <div>
@@ -63,5 +63,3 @@ export default function Dashboard () {
         </div>
     )
 }
-
-Dashboard.auth = true

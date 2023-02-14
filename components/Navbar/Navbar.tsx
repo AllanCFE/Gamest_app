@@ -1,6 +1,7 @@
 import styles from './Navbar.module.css'
 import GamestLogo from '../../public/Logos/Gamest.png'
 import Image from 'next/image'
+import { signOut } from 'next-auth/react'
 
 export default function Navbar () {
     return (
@@ -16,7 +17,7 @@ export default function Navbar () {
                         <div className={styles.notification}></div>
                     </div>
                 </div>
-                <div className={[styles.option, styles.profilePicture].join(' ')}>
+                <div className={[styles.option, styles.profilePicture].join(' ')} onClick={() => signOut()}>
                     <Image src='https://github.com/AllanCFE.png' width={50} height={50} alt="Profile Picture" />
                     <div className={styles.rightProfilePicture}>
                         <div className={styles.notification}></div>
