@@ -86,7 +86,7 @@ export default function SignIn({ providers }) {
 
             <div className={styles.providersMenu}>
               {Object.values(providers).map((provider) => (
-                <div className={provider.name != "Credentials" ? styles.providerLoginButton : styles.hide}>
+                <div className={provider.name != "Credentials" ? styles.providerLoginButton : styles.hide} onClick={() => signIn(provider.id)}>
                   <span className={styles.providerLogo}>
                       {provider.name != "Credentials" ? 
                         <Image src={GoogleLogo} alt="google_logo" style={{objectFit: 'contain', maxWidth: '30px', maxHeight: '30px'}}/> : ""
@@ -118,7 +118,7 @@ export async function getServerSideProps(context) {
   const session = await getSession({req})
 
   if(session && res){
-    res.writeHead(302, { Location: '/test' })
+    res.writeHead(302, { Location: '/company/dashboard' })
     res.end()
   }
   return {
