@@ -19,7 +19,7 @@ export default function SignIn({ providers }: { providers: any }) {
         
         <div className={styles.left}>
             <div className={styles.logo}>
-                <Image src={GamestLogo} alt="logo" style={{objectFit: 'contain', maxWidth: '100%', maxHeight: '8vh'}}/>
+                <Image src={GamestLogo} alt="logo" style={{objectFit: 'contain', maxHeight: '8vh'}}/>
             </div>
 
             <div className={styles.form}>
