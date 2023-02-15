@@ -1,6 +1,6 @@
 .nav {
     position: absolute;
-    z-index: 999;
+    z-index: 100;
     top: 0;
     left: 0;
     width: 100%;
@@ -42,10 +42,63 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
-.profilePicture:hover {
+.dropdownArea{
+    position: relative;
+    display: inline-block;
+}
+
+.dropdownContent {
+    position: absolute;
+    background-color: var(--background-content-color);
+    width: 10vw;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 101;
+    text-align: right;
+    right: 20px;
+    border-radius: 3px;
+    display: none;
+}
+
+.dropdownArea:hover .dropdownContent {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+.dropdownContent:hover {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+.dropdownItem {
+    color: var(--font-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 3px;
+}
+
+.dropdownItem:hover {
+    background-color: var(--highlight-color);
     cursor: pointer;
+}
+
+.horizontalBar {
+    margin: 0 10px;
+    height: 1px !important;
+    padding: 0;
+    background-color: var(--border-color);
+}
+
+.exitButton{
+    color: var(--red-color);
 }
 
 .profilePicture img {
