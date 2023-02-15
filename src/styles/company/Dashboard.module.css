@@ -37,8 +37,8 @@
 
 .horizontalBar {
     width: 100%;
-    height: 1px !important;
-    background-color: black;
+    height: 1px;
+    background-color: var(--border-color);
 }
 
 .buttonsArea {
@@ -144,4 +144,52 @@
 .deleteButton {
     color: var(--red-color);
     border-color: var(--red-color) !important;
+}
+
+.companyLogo {
+    border-radius: 50%;
+    object-fit: cover;
+    max-width: 18vw;
+}
+
+.companyLogo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+@media (max-width: 800px) {
+    .horizontalBar {
+        width: 1px;
+        height: 100%;
+    }
+
+    .companyTop {
+        margin-bottom: 0;
+        justify-content: center;
+    }
+
+    .companyLogo {
+        max-width: unset;
+        max-height: 28vh;
+        max-width: 32vw;
+    }
+
+    .buttonsArea {
+        justify-content: center;
+        align-items: center;
+        margin-left: 20px;
+        min-width: calc(63vw - 40px);
+    }
+
+    .vacancyDescription {
+        padding-right: 2vw;
+    }
+}
+
+@media (max-width: 600px){
+    .calendar {
+        display: none;
+        visibility: hidden;
+    }
 }

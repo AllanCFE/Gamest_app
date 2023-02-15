@@ -1,4 +1,5 @@
-import Navbar from '../../../components/Navbar/Navbar'
+import StandardBlockDivision from 'components/StandardBlockDivision/StandardBlockDivision'
+
 import styles from '../../styles/company/Dashboard.module.css'
 import Image from 'next/image'
 import userRequireAuth from 'components/useRequireAuth/useRequireAuth'
@@ -9,12 +10,12 @@ export default function Dashboard () {
     if (!session) return <div>Loading...</div>
 
     return (
-        <div>
-            <Navbar />
-            <main className={styles.main}>
-                <div className={styles.leftContent}>
+        <>
+        <StandardBlockDivision 
+            leftChildren={
+                <>
                     <div className={styles.companyTop}>
-                        <span>
+                        <span className={styles.companyLogo}>
                             <Image src="https://github.com/google.png" alt="Company Logo" width={200} height={200} />
                         </span>
                         <span>
@@ -30,8 +31,10 @@ export default function Dashboard () {
                         <span>Button 3</span>
                     </div>
 
-                </div>
-                <div className={styles.rightContent}>
+                </>
+            }
+            rightChildren={
+                <>
                     <div className={styles.vacancyArea}>
                         <div className={styles.vacancyRight}>
                             <span className={styles.calendar}>
@@ -58,8 +61,11 @@ export default function Dashboard () {
                             <span className={styles.deleteButton}>Delete</span>
                         </div>
                     </div>
-                </div>
-            </main>
-        </div>
+                </>
+            }
+        />
+                
+                
+        </>
     )
 }
