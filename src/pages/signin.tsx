@@ -1,18 +1,17 @@
-import { getProviders, signIn, getSession } from "next-auth/react";
 import styles from '@/styles/SignIn.module.css';
+
 import Image from "next/image";
+import Link from "next/link";
+
 import { useState } from 'react';
+import { getProviders, signIn, getSession } from "next-auth/react";
+
+
 import GamestLogo from '../../public/Logos/Gamest.png'
 import loginImage from '../../public/login_img.png'
 import GoogleLogo from '../../public/SignIn/Google.png'
 
 export default function SignIn({ providers }: { providers: any }) {
-  /*Object.values(providers).map((provider) => (
-    console.log(provider)
-  ))*/
-
-  const [message, setMessage] = useState(''); // This will be used to show a message if the submission is successful
-  const [submitted, setSubmitted] = useState(false);
 
   return (
     <>
@@ -50,7 +49,7 @@ export default function SignIn({ providers }: { providers: any }) {
                   />
                 </div>
                 <span className={styles.forgotPassword}>
-                  <a href="/retrievePassword">Esqueci minha senha</a>
+                  <Link href="/retrievePassword">Esqueci minha senha</Link>
                 </span>
 
                 <div className={styles.buttonarea}>
@@ -58,7 +57,7 @@ export default function SignIn({ providers }: { providers: any }) {
                 </div>
 
                 <span className={styles.registerArea}>
-                  Ainda não tem uma conta? <a href="/signup"> Cadastre-se aqui </a>
+                  Ainda não tem uma conta? <Link href="/signup">Cadastre-se aqui</Link>
                 </span>
 
               </form>
