@@ -13,6 +13,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: left top;
 }
 
 .right {
@@ -47,4 +48,21 @@
     border-radius: 10px;
     border: 2px solid var(--border-color-background);
     text-align: center;
+}
+
+@media (max-width: 800px) {
+
+    .main {
+        flex-direction: column;
+    }
+
+    .left {
+        width: 100vw;
+        height: 10vh;
+    }
+
+    .right {
+        width: 100vw;
+        height: 90vh;
+    }
 }
