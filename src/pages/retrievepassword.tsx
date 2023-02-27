@@ -1,16 +1,12 @@
 import styles from '@/styles/RetrievePassword.module.css';
 
 import Image from "next/image";
-import Link from "next/link";
-
-import { getProviders, signIn, getSession } from "next-auth/react";
 
 
 import GamestLogo from '../../public/Logos/Gamest.png'
 import loginImage from '../../public/login_img.png'
-import GoogleLogo from '../../public/SignIn/Google.png'
 
-export default function RetrievePassword({ providers }: { providers: any }) {
+export default function RetrievePassword() {
 
   return (
     <>
@@ -21,7 +17,7 @@ export default function RetrievePassword({ providers }: { providers: any }) {
                 <Image src={GamestLogo} alt="logo" style={{objectFit: 'contain', maxHeight: '8vh'}}/>
             </div>
 
-            <div className={styles.form}>
+            <div className={[styles.form, styles.hide].join(" ")}>
                 <h1 className={styles.centralText}>Forgot my password <span style={{whiteSpace: 'nowrap'}}>:(</span></h1>
                 <form>
 
@@ -44,6 +40,11 @@ export default function RetrievePassword({ providers }: { providers: any }) {
                 </form>
             </div>
 
+            <div className={[styles.form, styles.sentMail].join(" ")}>
+                <h1 className={styles.centralText}>One step closer to retrieve your password <span style={{whiteSpace: 'nowrap'}}>:)</span></h1>
+                <p>E-Mail sent to your mailbox. Be sure to check your spam folder.</p>
+            </div>
+
         </div>
             
         <div className={styles.right}>
@@ -55,18 +56,4 @@ export default function RetrievePassword({ providers }: { providers: any }) {
       <div className={styles.boxShadow}></div>
     </>
   )
-}
-
-export async function getServerSideProps(context:any) {
-  const providers = await getProviders()
-  const {req,res} = context
-  const session = await getSession({req})
-
-  if(session && res){
-    res.writeHead(302, { Location: '/company/dashboard' })
-    res.end()
-  }
-  return {
-    props: { providers },
-  }
 }
