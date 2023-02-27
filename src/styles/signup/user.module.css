@@ -1,0 +1,122 @@
+.main {
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+.left {
+    width: 30vw;
+    height: 100vh;
+}
+
+.left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left top;
+}
+
+.right {
+    width: 70vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 10vh 5vw;
+}
+
+.holder {
+    background-color: var(--background-content-color);
+    box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    margin: 0 5vw;
+    display: flex;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.formArea {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 5vh 2vw;
+    width: 100%;
+    height: 100%;
+}
+
+.formLine {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.formLine span {
+    width: 48%;
+}
+
+.inputSpan {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputSpan label {
+    margin-bottom: 5px;
+}
+
+.inputSpace {
+    background-color: var(--background-content-color);
+    border-color: rgb(202, 202, 202);
+    border-radius: 5px;
+    border-width: 1px;
+    padding: 2px 10px;
+    height: 30px;
+}
+
+.submitButton {
+    background-color: var(--background-content-color);
+    border-color: var(--border-color);
+    border-radius: 5px;
+    border-width: 1px;
+    padding: 2px 10px;
+    height: 30px;
+    width: 100%;
+    cursor: pointer;
+    font-family: var(--font-paraghraphs);
+    color: var(--light-font-color);
+}
+
+.submitButton:hover {
+    background-color: var(--background-color);
+    color: var(--font-color);
+}
+
+.disclaimer {
+    font-family: var(--font-paraghraphs);
+    font-size: 0.6rem;
+    color: var(--light-font-color);
+    height: 10%;
+    text-align: center;
+}
+
+.disclaimer a {
+    color: var(--blue-color);
+    text-decoration: none;
+}
+
+@media (max-width: 800px) {
+
+    .main {
+        flex-direction: column;
+    }
+
+    .left {
+        width: 100vw;
+        height: 10vh;
+    }
+
+    .right {
+        width: 100vw;
+        height: 90vh;
+    }
+}
