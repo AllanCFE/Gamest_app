@@ -1,14 +1,14 @@
 .main {
     margin-top: 8vh;
     display: flex;
-    padding: 20px 3vw;
+    padding: 20px 2vw;
     align-items: center;
     justify-content: space-between;
 }
 
 .leftHolder {
-    max-width: 22vw;
-    min-width: calc(calc(95vw - 40px) * 0.25);
+    max-width: 25vw;
+    min-width: calc(calc(97vw - 40px) * 0.25);
     height: 85vh;
     background-color: var(--background-content-color);
     border-radius: 10px;
@@ -18,8 +18,8 @@
 }
 
 .rightHolder {
-    max-width: 73vw;
-    min-width: calc(calc(95vw - 40px) * 0.75);
+    max-width: 75vw;
+    min-width: calc(calc(97vw - 40px) * 0.75);
     height: 85vh;
     background-color: var(--background-content-color);
     border-radius: 10px;
