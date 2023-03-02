@@ -29,11 +29,12 @@
 .logo {
     max-width: 200px;
     max-height: 100%;
+    margin-left: 10px;
 }
 
 .logo img {
     filter: invert(88%) sepia(14%) saturate(323%) hue-rotate(169deg) brightness(100%) contrast(96%);
-    max-width: 100% !important;
+    max-width: 90% !important;
     height: 4.5vh;
     object-fit: contain;
 }
