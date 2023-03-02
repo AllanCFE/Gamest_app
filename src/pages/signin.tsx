@@ -49,7 +49,7 @@ export default function SignIn({ providers }: { providers: any }) {
                   />
                 </div>
                 <span className={styles.forgotPassword}>
-                  <Link href="/retrievePassword">Esqueci minha senha</Link>
+                  <Link href="/retrievepassword">Esqueci minha senha</Link>
                 </span>
 
                 <div className={styles.buttonarea}>
