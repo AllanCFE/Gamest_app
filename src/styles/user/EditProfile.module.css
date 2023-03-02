@@ -33,6 +33,9 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    background-color: var(--background-content-color);
+    padding: 20px 10px;
+    border-radius: 10px;
 }
 
 .companyTop span {
@@ -128,6 +131,16 @@
     color: var(--light-font-color);
 }
 
+.leftHolder {
+    visibility: visible;
+    background-color: transparent;
+    padding: 0;
+}
+
+.rightHolder {
+    visibility: visible;
+}
+
 @media (max-width: 800px) {
     .horizontalBar {
         width: 1px;
@@ -143,6 +156,20 @@
     .companyLogo {
         max-width: 25vh;
         max-height: 25vh;
+    }
+
+    .leftHolder {
+        visibility: hidden;
+        display: none;
+    }
+
+    .rightHolder {
+        height: auto;
+    }
+
+    .scrollBar {
+        overflow-y: auto;
+        height: 100%;
     }
 }
 

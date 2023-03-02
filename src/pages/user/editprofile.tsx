@@ -29,6 +29,9 @@ export default function Dashboard () {
 
                 </>
             }
+
+            leftClass={styles.leftHolder}
+            rightClass={styles.rightHolder}
             
             rightChildren={
                 <div className={styles.scrollBar}>

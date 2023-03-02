@@ -8,7 +8,7 @@ interface StandardLeftProps {
     rightClass?: string
 }
 
-export default function StandardLeft({leftChildren, rightChildren, leftClass = "", rightClass = ""}: StandardLeftProps) {
+export default function StandardLeft({leftChildren, rightChildren, leftClass, rightClass}: StandardLeftProps) {
     return (
         <>
             <Navbar/>
