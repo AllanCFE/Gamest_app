@@ -52,6 +52,10 @@
     margin-top: 10px;
 }
 
+.infoArea > * {
+    margin-bottom: 7px;
+}
+
 .infoArea ul {
     margin-left: 10%;
 }
@@ -170,7 +174,7 @@
 }
 
 .companyLogo {
-    max-width: 15vw;
+    max-width: 13vw;
 }
 
 .companyLogo img {
