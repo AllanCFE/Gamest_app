@@ -3,9 +3,8 @@ import StandardBlockDivision from 'components/StandardBlockDivision/StandardBloc
 import styles from '../../styles/user/EditProfile.module.css'
 import Image from 'next/image'
 import useRequireAuth from 'components/useRequireAuth/useRequireAuth'
-import Link from 'next/link';
 
-export default function Dashboard () {
+export default function EditProfile () {
 
     const session = useRequireAuth();
     if (!session) return <div>Loading...</div>
