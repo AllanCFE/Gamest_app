@@ -217,6 +217,12 @@
     cursor: pointer;
 }
 
+.removeExperienceButton {
+    color: var(--red-color);
+    border-color: var(--red-color);
+    cursor: pointer;
+}
+
 @media (max-width: 800px) {
     .horizontalBar {
         width: 1px;

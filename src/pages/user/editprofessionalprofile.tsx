@@ -63,32 +63,32 @@ export default function EditProfessionalProfile () {
         // Logic to add new experiences to the list
         const addExperienceButton = (document.getElementById("addExperienceButton") as HTMLInputElement);
         const experiencesHolder = (document.getElementById("experiencesHolder") as HTMLInputElement);
+        const allExperiences = (document.getElementsByClassName(styles.experienceArea) as HTMLCollectionOf<HTMLElement>);
+        
 
         if(addExperienceButton && experiencesHolder) {
             const addExperienceHandler = () => {
-                addExperienceButton.removeEventListener("click", addExperienceHandler);
-
                 const newExperience = document.createElement("div");
                 newExperience.className = styles.experienceArea;
                 newExperience.innerHTML = `
                     <div class=${styles.formLine}>
                         <span class=${styles.inputSpan}>
-                            <input type="text" name="position" id="position" placeholder="Position" />
+                            <input type="text" name="position" placeholder="Position" />
                         </span>
                         <span class=${styles.inputSpan}>
-                            <input type="text" name="company" id="company" placeholder="Company" />
+                            <input type="text" name="company" placeholder="Company" />
                         </span>
                     </div>
 
                     <div class=${styles.formLine}><div class=${styles.formLine}>
                         <span class=${[styles.inputSpan, styles.inputSpanEntireLine].join(" ")}>
-                            <input type="date" name="startdate" id="startdate" placeholder="Start Date" />
+                            <input type="date" name="startdate" placeholder="Start Date" />
                         </span>
                         <span class=${[styles.inputSpan, styles.inputSpanEntireLine].join(" ")}>
-                            <input type="date" name="enddate" id="enddate" placeholder="End Date" />
+                            <input type="date" name="enddate" placeholder="End Date" disabled />
                         </span>
                         <span style="display: flex; flex-direction: row; width: 100%; padding: 0px 10px;">
-                            <input type="checkbox" name="currentjob" id="currentjob" value="currentjob" />
+                            <input type="checkbox" name="currentjob" value="currentjob" />
                             <label htmlFor="currentjob" style="margin-left: 5px; font-size: 0.8rem;">Current Job</label>
                         </span>
                     </div></div>
@@ -99,13 +99,73 @@ export default function EditProfessionalProfile () {
                             <textarea name="description" id="description" cols=${30} rows=${10}></textarea>
                         </span>
                     </div>
+
+                    <div class=${styles.formLine}>
+                        <button type="button" class="${styles.removeExperienceButton} ${styles.addButton}">Delete</button>
+                    </div>
                 `;
-
-                experiencesHolder.appendChild(newExperience);
-
-                addExperienceButton.addEventListener("click", addExperienceHandler);
+                
+                
+                const lastExperienceDescription = (allExperiences[allExperiences.length - 1]?.children[2]?.lastElementChild?.lastElementChild as HTMLInputElement);
+                if(lastExperienceDescription?.value !== "" && lastExperienceDescription?.value !== undefined || allExperiences.length === 0) {
+                    (newExperience?.children[1]?.lastElementChild?.children[1]?.lastElementChild as HTMLInputElement).disabled = false;
+                    experiencesHolder.appendChild(newExperience);
+                }
             }
+            addExperienceButton.removeEventListener("click", addExperienceHandler);
             addExperienceButton.addEventListener("click", addExperienceHandler);
+        }
+
+        // Logic to delete experiences from the list
+        if(experiencesHolder) {
+            experiencesHolder.addEventListener("click", (event) => {
+                const target = event.target as HTMLInputElement;
+                if(target.className.includes(styles.removeExperienceButton)) {
+                    target.parentElement?.parentElement?.remove();
+                }
+            });
+        }
+
+        // Logic to block end date input if current job is checked
+        if(experiencesHolder) {
+            experiencesHolder.addEventListener("click", (event) => {
+                const target = event.target as HTMLInputElement;
+                if(target.name === "currentjob") {
+                    const endDateInput = target.parentElement?.parentElement?.children[1].lastElementChild as HTMLInputElement;
+                    endDateInput.disabled = target.checked;
+                    
+                    const allCurrentJobCheckboxes = (document.getElementsByName("currentjob") as NodeListOf<HTMLInputElement>);
+                    allCurrentJobCheckboxes.forEach(checkbox => {
+                        if(checkbox !== target) {
+                            checkbox.checked = false;
+                            const endDateInput = checkbox.parentElement?.parentElement?.children[1].lastElementChild as HTMLInputElement;
+                            endDateInput.disabled = false;
+                        }
+                    });
+                }
+            });
+        }
+
+        // Logic to block two currentjob checkboxes at the same time
+        if(experiencesHolder) {
+            experiencesHolder.addEventListener("click", (event) => {
+                const target = event.target as HTMLInputElement;
+                if(target.name === "currentjob") {
+                    const allCurrentJobCheckboxes = (document.getElementsByName("currentjob") as NodeListOf<HTMLInputElement>);
+                    allCurrentJobCheckboxes.forEach(checkbox => {
+                        if(checkbox !== target) checkbox.checked = false;
+                    });
+                }
+            });
+        }
+
+        // Logic to handle Submit button
+        const submitButton = (document.getElementById("submitButton") as HTMLInputElement);
+        if(submitButton) {
+            submitButton.addEventListener("click", (event) => {
+                event.preventDefault();
+                console.log("OK")
+            });
         }
     }
 
@@ -246,43 +306,11 @@ export default function EditProfessionalProfile () {
 
                         <div className={styles.formGroup} id="experiencesHolder">
                             <h2>History</h2>
-
-                            <div className={styles.experienceArea}>
-                                <div className={styles.formLine}>
-                                    <span className={styles.inputSpan}>
-                                        <input type="text" name="position" id="position" placeholder="Position" />
-                                    </span>
-                                    <span className={styles.inputSpan}>
-                                        <input type="text" name="company" id="company" placeholder="Company" />
-                                    </span>
-                                </div>
-
-                                <div className={styles.formLine}><div className={styles.formLine}>
-                                    <span className={[styles.inputSpan, styles.inputSpanEntireLine].join(" ")}>
-                                        <input type="date" name="startdate" id="startdate" placeholder="Start Date" />
-                                    </span>
-                                    <span className={[styles.inputSpan, styles.inputSpanEntireLine].join(" ")}>
-                                        <input type="date" name="enddate" id="enddate" placeholder="End Date" />
-                                    </span>
-                                    <span style={{display: "flex", flexDirection: "row", width: "100%", padding: "0 10px", alignItems: "center"}}>
-                                        <input type="checkbox" name="currentjob" id="currentjob" value="currentjob" />
-                                        <label htmlFor="currentjob" style={{fontSize: "0.8rem", marginLeft: "5px"}}>Current Job</label>
-                                    </span>
-                                </div></div>
-
-                                <div className={styles.formLine}>
-                                    <span className={[styles.inputSpan, styles.inputSpanEntireLine].join(" ")}>
-                                        <label htmlFor="description">Description</label>
-                                        <textarea name="description" id="description" cols={30} rows={10}></textarea>
-                                    </span>
-                                </div>
-
-                            </div>
                         </div>
                         <button className={styles.addButton} type="button" id="addExperienceButton">+</button>
 
                         <span>
-                            <button className={styles.submitFormButton} type="submit">Save</button>
+                            <button className={styles.submitFormButton} type="submit" id="submitButton">Save</button>
                         </span>
                     </form>
                     
