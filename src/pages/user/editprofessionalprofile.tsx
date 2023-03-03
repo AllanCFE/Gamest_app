@@ -50,6 +50,63 @@ export default function EditProfessionalProfile () {
             addToolButton.addEventListener("click", addToolHandler);
         }
 
+        // Logic to delete tools from the list
+        if(toolsArea) {
+            toolsArea.addEventListener("click", (event) => {
+                const target = event.target as HTMLInputElement;
+                if(target.className === styles.deleteButton) {
+                    target.parentElement?.remove();
+                }
+            });
+        }
+
+        // Logic to add new experiences to the list
+        const addExperienceButton = (document.getElementById("addExperienceButton") as HTMLInputElement);
+        const experiencesHolder = (document.getElementById("experiencesHolder") as HTMLInputElement);
+
+        if(addExperienceButton && experiencesHolder) {
+            const addExperienceHandler = () => {
+                addExperienceButton.removeEventListener("click", addExperienceHandler);
+
+                const newExperience = document.createElement("div");
+                newExperience.className = styles.experienceArea;
+                newExperience.innerHTML = `
+                    <div class=${styles.formLine}>
+                        <span class=${styles.inputSpan}>
+                            <input type="text" name="position" id="position" placeholder="Position" />
+                        </span>
+                        <span class=${styles.inputSpan}>
+                            <input type="text" name="company" id="company" placeholder="Company" />
+                        </span>
+                    </div>
+
+                    <div class=${styles.formLine}><div class=${styles.formLine}>
+                        <span class=${[styles.inputSpan, styles.inputSpanEntireLine].join(" ")}>
+                            <input type="date" name="startdate" id="startdate" placeholder="Start Date" />
+                        </span>
+                        <span class=${[styles.inputSpan, styles.inputSpanEntireLine].join(" ")}>
+                            <input type="date" name="enddate" id="enddate" placeholder="End Date" />
+                        </span>
+                        <span style="display: flex; flex-direction: row; width: 100%; padding: 0px 10px;">
+                            <input type="checkbox" name="currentjob" id="currentjob" value="currentjob" />
+                            <label htmlFor="currentjob" style="margin-left: 5px; font-size: 0.8rem;">Current Job</label>
+                        </span>
+                    </div></div>
+
+                    <div class=${styles.formLine}>
+                        <span class="${styles.inputSpan} ${styles.inputSpanEntireLine}">
+                            <label htmlFor="description">Description</label>
+                            <textarea name="description" id="description" cols=${30} rows=${10}></textarea>
+                        </span>
+                    </div>
+                `;
+
+                experiencesHolder.appendChild(newExperience);
+
+                addExperienceButton.addEventListener("click", addExperienceHandler);
+            }
+            addExperienceButton.addEventListener("click", addExperienceHandler);
+        }
     }
 
     return (
@@ -187,7 +244,7 @@ export default function EditProfessionalProfile () {
                             <div className={styles.horizontalBar}></div>
                         </div>
 
-                        <div className={styles.formGroup}>
+                        <div className={styles.formGroup} id="experiencesHolder">
                             <h2>History</h2>
 
                             <div className={styles.experienceArea}>
@@ -207,9 +264,9 @@ export default function EditProfessionalProfile () {
                                     <span className={[styles.inputSpan, styles.inputSpanEntireLine].join(" ")}>
                                         <input type="date" name="enddate" id="enddate" placeholder="End Date" />
                                     </span>
-                                    <span style={{display: "flex", flexDirection: "row", width: "100%", padding: "0 10px"}}>
+                                    <span style={{display: "flex", flexDirection: "row", width: "100%", padding: "0 10px", alignItems: "center"}}>
                                         <input type="checkbox" name="currentjob" id="currentjob" value="currentjob" />
-                                        <label htmlFor="currentjob">Current Job</label>
+                                        <label htmlFor="currentjob" style={{fontSize: "0.8rem", marginLeft: "5px"}}>Current Job</label>
                                     </span>
                                 </div></div>
 
@@ -220,9 +277,9 @@ export default function EditProfessionalProfile () {
                                     </span>
                                 </div>
 
-                                <button className={styles.addButton} type="button">+</button>
                             </div>
                         </div>
+                        <button className={styles.addButton} type="button" id="addExperienceButton">+</button>
 
                         <span>
                             <button className={styles.submitFormButton} type="submit">Save</button>
