@@ -4,8 +4,12 @@
     height: 100%;
 }
 
-/* Vancy card and inner parts */
-.vacancyArea {
+.leftArea {
+    padding-right: 0;
+}
+
+/* Profile card and inner parts */
+.profileArea {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -29,18 +33,32 @@
     object-fit: contain;
 }
 
-.vacancyDescription {
+.profileDescription {
     display: flex;
     flex-direction: column;
     padding: 10px 0;
     margin-left: 20px;
 }
 
-.vacancyDescription h2{
+.profileHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.profileHeader p {
+    margin-left: 10px;
+    color: var(--light-font-color);
+    font-size: 0.8rem;
+}
+
+.profileDescription h2{
     margin-bottom: 5px;
 }
 
-.vacancyOptions {
+.profileOptions {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -48,27 +66,28 @@
     height: 100%;
 }
 
-.vacancyOptionsLine {
+.profileOptionsLine {
     height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.vacancyAreaLeft {
+.profileAreaLeft {
     height: 100%;
 }
 
-.vacancyOptionValue {
+.profileOptionValue {
     color: var(--light-font-color);
+    margin-left: 10px;
 }
 
-.vacancyRight {
+.profileRight {
     display: flex;
     flex-direction: row;
 }
 
-.vacancyLeft {
+.profileLeft {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -76,7 +95,7 @@
     width: 20%;
 }
 
-.vacancyLeft span{
+.profileLeft span{
     padding: 10px 10px;
     border-radius: 5px;
     border: 2px solid var(--border-color);
@@ -85,23 +104,18 @@
     margin: 5px 0;
 }
 
-.vacancyLeft span:hover {
+.profileLeft span:hover {
     cursor: pointer;
 }
 
-.editButton {
+.cartButton {
     color: var(--blue-color);
     border-color: var(--blue-color) !important;
 }
 
-.waitButton {
-    color: var(--light-font-color);
-    border-color: var(--border-color) !important;
-}
-
-.deleteButton {
-    color: var(--red-color);
-    border-color: var(--red-color) !important;
+.saveButton {
+    color: var(--purple-color);
+    border-color: var(--purple-color) !important;
 }
 
 /* Left content and inner parts */
@@ -109,7 +123,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 100%;
+    width: 94%;
     margin: 5px 0;
     max-height: 30%;
     height: fit-content;

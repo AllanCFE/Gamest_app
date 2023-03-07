@@ -1,6 +1,6 @@
 import StandardBlockDivision from 'components/StandardBlockDivision/StandardBlockDivision'
 
-import styles from '../../styles/user/SearchJob.module.css'
+import styles from '../../styles/company/SearchProfile.module.css'
 import useRequireAuth from 'components/useRequireAuth/useRequireAuth'
 import Image from 'next/image'
 
@@ -15,13 +15,30 @@ export default function Dashboard () {
             leftChildren={
                 <div className={styles.scrollBar}>
                     <div className={`${styles.baseArea}`}>
+                        <h3>Areas</h3>
+                        <ul className={`${styles.listSearch} ${styles.scrollBar}`}>
+                            <li>Animation</li>
+                            <li>Art</li>
+                            <li>Audio</li>
+                            <li>Design</li>
+                            <li>Production</li>
+                            <li>Programming</li>
+                            <li>QA</li>
+                            <li>Marketing</li>
+                        </ul>
+                    </div>
+
+                    <div className={`${styles.baseArea}`}>
                         <h3>Tools</h3>
                         <ul className={`${styles.listSearch} ${styles.scrollBar}`}>
-                            <li>React</li>
-                            <li>Next.js</li>
-                            <li>Node.js</li>
-                            <li>Express</li>
-                            <li>PostgreSQL</li>
+                            <li>Unreal Engine</li>
+                            <li>Unity</li>
+                            <li>Photoshop</li>
+                            <li>Illustrator</li>
+                            <li>Blender</li>
+                            <li>Maya</li>
+                            <li>C#</li>
+                            <li>Python</li>
                         </ul>
                     </div>
 
@@ -29,9 +46,9 @@ export default function Dashboard () {
                         <h3>Experience</h3>
                         <ul className={`${styles.listSearch} ${styles.scrollBar}`}>
                             <li>0 - 1 year</li>
-                            <li>2 - 3 years </li>
-                            <li>4 - 5 years</li>
-                            <li>5+ years</li>
+                            <li>2 - 5 years </li>
+                            <li>5 - 7 years</li>
+                            <li>7+ years</li>
                         </ul>
                     </div>
 
@@ -46,33 +63,38 @@ export default function Dashboard () {
                     <div className={styles.searchButton}>Search</div>
                 </div>
             }
+
+            leftClass={styles.leftArea}
             
             rightChildren={
                 <div className={styles.scrollBar}>
-                    <div className={styles.vacancyArea}>
-                        <div className={styles.vacancyRight}>
+                    <div className={styles.profileArea}>
+                        <div className={styles.profileRight}>
                             <span className={styles.calendar}>
                                 <Image src="https://i.imgur.com/ICodYAI.png" alt="calendar" width={150} height={150} />
                             </span>
-                            <div className={styles.vacancyDescription}>
-                                <h2>Title</h2>
-                                <div className={styles.vacancyOptions}>
-                                    <div className={styles.vacancyOptionsLine}>
-                                        <p>Location: </p>
+                            <div className={styles.profileDescription}>
+                                <div className={styles.profileHeader}>
+                                    <h2>Title</h2>
+                                    <p>Unity Developer</p>
+                                </div>
+                                <div className={styles.profileOptions}>
+                                    <div className={styles.profileOptionsLine}>
+                                        <p>Tools: </p>
                                         <p>Salary: </p>
                                         <p>Languages: </p>
                                     </div>
-                                    <div className={[styles.vacancyOptionsLine, styles.vacancyOptionValue].join(" ")}>
-                                        <p>Somewhere over the rainbow</p>
+                                    <div className={[styles.profileOptionsLine, styles.profileOptionValue].join(" ")}>
+                                        <p>Unity, <span>Unreal</span>, Blender</p>
                                         <p>$ 9999,99</p>
-                                        <p>Portuguese, Latin</p>
+                                        <p>C#, Java</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className={styles.vacancyLeft}>
-                            <span className={styles.editButton}>Edit</span>
-                            <span className={styles.deleteButton}>Delete</span>
+                        <div className={styles.profileLeft}>
+                            <span className={styles.cartButton}>Add to cart</span>
+                            <span className={styles.saveButton}>Save profile</span>
                         </div>
                     </div>
                 </div>
