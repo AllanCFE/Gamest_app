@@ -147,6 +147,14 @@
     border-bottom: 1px solid var(--border-color);
 }
 
+.listSearch li:last-child {
+    border-bottom: none;
+}
+
+.listSearch li:hover {
+    cursor: pointer;
+}
+
 .rangeSearch {
     display: flex;
     flex-direction: row;
