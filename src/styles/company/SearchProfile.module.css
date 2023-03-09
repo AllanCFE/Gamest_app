@@ -9,6 +9,10 @@
 }
 
 /* Profile card and inner parts */
+.leftAreaInner {
+    padding: 0;
+}
+
 .profileArea {
     display: flex;
     flex-direction: row;
@@ -155,6 +159,8 @@
     cursor: pointer;
 }
 
+
+
 .rangeSearch {
     display: flex;
     flex-direction: row;
@@ -199,4 +205,116 @@
 
 .searchButton:hover {
     cursor: pointer;
+}
+
+/* Mobile settings */
+@media (max-width:768px) {
+    /* Profile Area */
+    .profileArea {
+        flex-direction: column;
+    }
+
+    .profileAreaLeft {
+        width: 100%;
+    }
+
+    .profileLeft {
+        width: 100%;
+    }
+
+    .profileRight {
+        width: 100%;
+    }
+
+    .profileDescription {
+        margin-left: 0;
+    }
+
+    .profileHeader {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column !important;
+        width: max-content;
+    }
+
+    .profileHeader p {
+        margin-left: 0;
+    }
+
+    .profileOptions {
+        visibility: hidden;
+        display: none;
+    }
+
+    .profileOptionsLine {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .profileOptionValue {
+        margin-left: 0;
+    }
+
+    .profileAreaLeft {
+        width: 100%;
+    }
+
+    .profileLeft {
+        width: 100%;
+    }
+
+    .profileRight {
+        width: 100%;
+    }
+
+    .profileDescription {
+        margin-left: 0;
+    }
+
+    .profileHeader {
+        justify-content: center;
+    }
+
+    .profileHeader p {
+        margin-left: 0;
+    }
+
+    .profileOptions {
+        flex-direction: column;
+    }
+
+    .profileOptionsLine {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .profileOptionValue {
+        margin-left: 0;
+    }
+
+    /* Left content and inner parts */
+    .baseArea {
+        max-height: max-content;
+    }
+
+    .leftAreaInner {
+        width: 100%;
+    }
+
+    .listSearch {
+        max-height: max-content;
+    }
+
+    .rangeSearch {
+        flex-direction: column;
+    }
+
+    .rangeSearch input {
+        margin: 5px 0;
+    }
+
+    .searchButton {
+        width: max-content;
+        padding: 0 15px;
+    }
 }

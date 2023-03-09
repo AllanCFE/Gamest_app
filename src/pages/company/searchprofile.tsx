@@ -13,7 +13,7 @@ export default function Dashboard () {
         <>
         <StandardBlockDivision 
             leftChildren={
-                <div className={styles.scrollBar}>
+                <div className={`${styles.scrollBar} ${styles.leftAreaInner}`}>
                     <div className={`${styles.baseArea}`}>
                         <h3>Areas</h3>
                         <ul className={`${styles.listSearch} ${styles.scrollBar}`}>
