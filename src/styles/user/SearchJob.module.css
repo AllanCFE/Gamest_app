@@ -178,3 +178,44 @@
 .searchButton:hover {
     cursor: pointer;
 }
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .vacancyArea {
+        flex-direction: column;
+    }
+
+    .vacancyAreaLeft {
+        width: 100%;
+    }
+
+    .vacancyRight {
+        width: 100%;
+    }
+
+    .vacancyLeft {
+        width: 100%;
+    }
+
+    .vacancyLeft span {
+        width: 100%;
+    }
+
+    .vacancyDescription {
+        margin-left: 0;
+    }
+
+    .calendar {
+        display: none;
+        visibility: hidden;
+    }
+
+    .vacancyOptionsLine {
+        margin-right: 5px;
+    }
+
+    /* Left content and inner parts */
+    .baseArea {
+        max-height: 100%;
+    }
+}
