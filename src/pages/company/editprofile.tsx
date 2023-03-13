@@ -22,9 +22,6 @@ export default function EditProfile () {
                         <span>
                             <h2>Allan Echeverria</h2>
                         </span>
-                        <span>
-                            <p className={styles.lastUpdated}>Last updated: 2022/02/28</p>
-                        </span>
                     </div>
 
                 </>
