@@ -28,8 +28,8 @@ export default function Cart () {
             rightChildren={
                 <>
                     <div className={styles.tabSelector}>
-                        <span className={`${styles.tabItem} ${styles.tabSelected}`}><Link href='/company/cart'>Cart</Link></span>
-                        <span className={`${styles.tabItem}`}><Link href='/company/saved'>Saved</Link></span>
+                        <Link href='/company/cart'><span className={`${styles.tabItem} ${styles.tabSelected}`}>Cart</span></Link>
+                        <Link href='/company/saved'><span className={`${styles.tabItem}`}>Saved</span></Link>
                     </div>
                     <div className={styles.profilesHolder}>
                         <div className={styles.vacancyArea}>
