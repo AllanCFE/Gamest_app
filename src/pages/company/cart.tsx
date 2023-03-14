@@ -4,6 +4,7 @@ import styles from '../../styles/company/Cart.module.css'
 import Image from 'next/image'
 import userRequireAuth from 'components/useRequireAuth/useRequireAuth'
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function Cart () {
 
@@ -27,8 +28,8 @@ export default function Cart () {
             rightChildren={
                 <>
                     <div className={styles.tabSelector}>
-                        <span className={`${styles.tabItem} ${styles.tabSelected}`}>Cart</span>
-                        <span className={`${styles.tabItem}`}>Saved</span>
+                        <span className={`${styles.tabItem} ${styles.tabSelected}`}><Link href='/company/cart'>Cart</Link></span>
+                        <span className={`${styles.tabItem}`}><Link href='/company/saved'>Saved</Link></span>
                     </div>
                     <div className={styles.profilesHolder}>
                         <div className={styles.vacancyArea}>
