@@ -1,11 +1,11 @@
 import StandardBlockDivision from 'components/StandardBlockDivision/StandardBlockDivision'
 
-import styles from '../../styles/company/Cart.module.css'
+import styles from '../../styles/company/Saved.module.css'
 import Image from 'next/image'
 import userRequireAuth from 'components/useRequireAuth/useRequireAuth'
 import { useRouter } from 'next/router';
 
-export default function Cart () {
+export default function Saved () {
 
     const router = useRouter();
     console.log(router)
@@ -27,8 +27,8 @@ export default function Cart () {
             rightChildren={
                 <>
                     <div className={styles.tabSelector}>
-                        <span className={`${styles.tabItem} ${styles.tabSelected}`}>Cart</span>
-                        <span className={`${styles.tabItem}`}>Saved</span>
+                        <span className={`${styles.tabItem}`}>Cart</span>
+                        <span className={`${styles.tabItem} ${styles.tabSelected}`}>Saved</span>
                     </div>
                     <div className={styles.profilesHolder}>
                         <div className={styles.vacancyArea}>
@@ -54,14 +54,10 @@ export default function Cart () {
                                 </div>
                             </div>
                             <div className={styles.vacancyLeft}>
-                                <p>U$ 100</p>
+                                <span className={styles.cartButton}>Add to cart</span>
                                 <span className={styles.deleteButton}>Delete</span>
                             </div>
                         </div>
-                    </div>
-                    <div className={styles.totalArea}>
-                        <p>Total: U$ 100</p>
-                        <button className={styles.checkoutButton}>Checkout</button>
                     </div>
                 </>
             }

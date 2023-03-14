@@ -169,6 +169,22 @@
     margin-top: 10px;
 }
 
+/* Blocked class */
+.blocked{
+    filter: blur(5px);
+    pointer-events: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.companyTop .blocked {
+    filter: blur(20px);
+}
+
+
 @media (max-width: 800px) {
     .horizontalBar {
         width: 1px;
@@ -179,6 +195,7 @@
         margin-bottom: 0;
         margin-right: 15px;
         justify-content: center;
+        padding: 0 20px;
     }
 
     .companyLogo {

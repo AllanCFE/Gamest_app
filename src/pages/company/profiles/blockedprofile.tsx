@@ -16,11 +16,11 @@ export default function UserProfile () {
             leftChildren={
                 <>
                     <div className={styles.companyTop}>
-                        <span className={styles.companyLogo}>
+                        <span className={`${styles.companyLogo} ${styles.blocked}`}>
                             <Image src="https://github.com/AllanCFE.png" alt="Company Logo" width={200} height={200} />
                         </span>
                         <span>
-                            <h2>Allan Echeverria</h2>
+                            <h2>A. E.</h2>
                         </span>
                         <span>
                             <p className={styles.lastUpdated}>Last updated: 2022/02/28</p>
@@ -38,11 +38,6 @@ export default function UserProfile () {
                             <li>Spanish (Intermediate)</li>
                             <li>German (Basic)</li>
                         </ul>
-                        <p><b>Contact:</b></p>
-                        <ul>
-                            <li>123456789</li>
-                            <li><Link href='mailto:example@email.com'>example@email.com</Link></li>
-                        </ul>
                     </div>
 
                 </>
@@ -54,12 +49,12 @@ export default function UserProfile () {
                 <>
                     <div className={styles.aboutArea}>
                         <h2>About</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies varius blandit. Suspendisse vulputate, magna vel elementum lacinia, nunc nunc rutrum mauris, sit amet vestibulum leo turpis id felis. Fusce tempus rutrum dapibus. Nulla elementum, nisl at mattis rhoncus, sem elit efficitur elit, molestie tincidunt nulla lacus finibus nisl. Fusce elementum nibh at nulla maximus, vel aliquam tortor ultrices. Donec rutrum volutpat leo, quis rutrum ex sagittis a. </p>
+                        <p className= {styles.scrollBar}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies varius blandit. Suspendisse vulputate, magna vel elementum lacinia, nunc nunc rutrum mauris, sit amet vestibulum leo turpis id felis. Fusce tempus rutrum dapibus. Nulla elementum, nisl at mattis rhoncus, sem elit efficitur elit, molestie tincidunt nulla lacus finibus nisl. Fusce elementum nibh at nulla maximus, vel aliquam tortor ultrices. Donec rutrum volutpat leo, quis rutrum ex sagittis a. </p>
                     </div>
                     <div className={`${styles.skillsArea} ${styles.scrollBar}`}>
                         <h3>Programming Languages</h3>
                         <div className={styles.skillsLine}>
-                            <div className={styles.toolArea}>
+                            <div className={`${styles.toolArea}`}>
                                 <span>
                                     <Image src="https://i.imgur.com/cBgelzs.jpeg" alt="calendar" width={40} height={40} />
                                 </span>
@@ -68,7 +63,7 @@ export default function UserProfile () {
                                     <p>years</p>
                                 </span>
                             </div>
-                            <div className={styles.toolArea}>
+                            <div className={`${styles.toolArea} ${styles.blocked}`}>
                                 <span>
                                     <Image src="https://i.imgur.com/cBgelzs.jpeg" alt="calendar" width={40} height={40} />
                                 </span>
@@ -77,7 +72,7 @@ export default function UserProfile () {
                                     <p>years</p>
                                 </span>
                             </div>
-                            <div className={styles.toolArea}>
+                            <div className={`${styles.toolArea} ${styles.blocked}`}>
                                 <span>
                                     <Image src="https://i.imgur.com/cBgelzs.jpeg" alt="calendar" width={40} height={40} />
                                 </span>
@@ -90,7 +85,7 @@ export default function UserProfile () {
 
                         <h3>Engines and Tools</h3>
                         <div className={styles.skillsLine}>
-                            <div className={styles.toolArea}>
+                            <div className={`${styles.toolArea}`}>
                                 <span>
                                     <Image src="https://i.imgur.com/cBgelzs.jpeg" alt="calendar" width={40} height={40} />
                                 </span>
@@ -99,7 +94,7 @@ export default function UserProfile () {
                                     <p>years</p>
                                 </span>
                             </div>
-                            <div className={styles.toolArea}>
+                            <div className={`${styles.toolArea} ${styles.blocked}`}>
                                 <span>
                                     <Image src="https://i.imgur.com/cBgelzs.jpeg" alt="calendar" width={40} height={40} />
                                 </span>
@@ -108,7 +103,7 @@ export default function UserProfile () {
                                     <p>years</p>
                                 </span>
                             </div>
-                            <div className={styles.toolArea}>
+                            <div className={`${styles.toolArea} ${styles.blocked}`}>
                                 <span>
                                     <Image src="https://i.imgur.com/cBgelzs.jpeg" alt="calendar" width={40} height={40} />
                                 </span>
@@ -124,11 +119,11 @@ export default function UserProfile () {
                             <div className={styles.historyItem}>
                                 <div className={styles.historyItemHeader}>
                                     <span className={styles.historyTitle}><h4>Unity Developer Senior</h4></span>
-                                    <span><b>Ubisoft</b> | <span className={styles.historyDataFrame}>2017 - Current</span></span>
+                                    <span className={` ${styles.blocked}`}><b>Ubisoft</b> | <span className={styles.historyDataFrame}>2017 - Current</span></span>
                                     
                                 </div>
                                 <div className={styles.historyItemBody}>
-                                    <span><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies varius blandit. Suspendisse vulputate, magna vel elementum lacinia, nunc nunc rutrum mauris, sit amet vestibulum leo turpis id felis. Fusce tempus rutrum dapibus. Nulla elementum, nisl at mattis rhoncus, sem elit efficitur elit, molestie tincidunt nulla lacus finibus nisl. Fusce elementum nibh at nulla maximus, vel aliquam tortor ultrices. Donec rutrum volutpat leo, quis rutrum ex sagittis a. Sed commodo, nibh eget bibendum condimentum, sem sem malesuada justo, ut pretium augue libero id massa. Nullam vestibulum risus eu odio laoreet pharetra. Maecenas tincidunt neque sed arcu eleifend, sit amet lobortis lacus commodo. In hac habitasse platea dictumst. </p></span>
+                                    <span className={` ${styles.blocked}`}><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ultricies varius blandit. Suspendisse vulputate, magna vel elementum lacinia, nunc nunc rutrum mauris, sit amet vestibulum leo turpis id felis. Fusce tempus rutrum dapibus. Nulla elementum, nisl at mattis rhoncus, sem elit efficitur elit, molestie tincidunt nulla lacus finibus nisl. Fusce elementum nibh at nulla maximus, vel aliquam tortor ultrices. Donec rutrum volutpat leo, quis rutrum ex sagittis a. Sed commodo, nibh eget bibendum condimentum, sem sem malesuada justo, ut pretium augue libero id massa. Nullam vestibulum risus eu odio laoreet pharetra. Maecenas tincidunt neque sed arcu eleifend, sit amet lobortis lacus commodo. In hac habitasse platea dictumst. </p></span>
                                 </div>
                             </div>
                         </div>
@@ -140,4 +135,8 @@ export default function UserProfile () {
                 
         </>
     )
+}
+
+function componentDidMount() {
+    throw new Error('Function not implemented.');
 }
