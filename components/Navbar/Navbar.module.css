@@ -102,6 +102,11 @@
     color: var(--red-color);
 }
 
+.exitButton:hover {
+    background-color: var(--red-color);
+    color: var(--white-color);
+}
+
 .profilePicture img {
     max-width: 80%;
     height: 80%;

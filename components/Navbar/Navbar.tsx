@@ -3,8 +3,12 @@ import GamestLogo from '../../public/Logos/Gamest.png'
 import Image from 'next/image'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 export default function Navbar () {
+    const router = useRouter();
+    const userType = router.pathname[1]
+
     return (
         <nav className={styles.nav}>
             <span className={styles.logo}>
@@ -21,15 +25,22 @@ export default function Navbar () {
                         </div>
                     </div>
                     <ul className={styles.dropdownContent}>
-                        <Link href='/company/dashboard'>
-                            <li className={styles.dropdownItem}>
-                                Dashboard
-                            </li>
-                        </Link>
-                        <Link href='/company/editprofile'><li className={styles.dropdownItem}>Settings</li></Link>
-                        <Link href='/company/cart'><li className={styles.dropdownItem}>Cart</li></Link>
-                        <Link href='/company/saved'><li className={styles.dropdownItem}>Saved</li></Link>
-                        <Link href='/company/searchprofile'><li className={styles.dropdownItem}>Search</li></Link>
+                        {userType == 'c' ? 
+                            <>
+                                <Link href='/company/dashboard'> <li className={styles.dropdownItem}> Dashboard </li> </Link>
+                                <Link href='/company/editprofile'><li className={styles.dropdownItem}>Settings</li></Link>
+                                <Link href='/company/cart'><li className={styles.dropdownItem}>Cart</li></Link>
+                                <Link href='/company/saved'><li className={styles.dropdownItem}>Saved</li></Link>
+                                <Link href='/company/searchprofile'><li className={styles.dropdownItem}>Search</li></Link>
+                            </>
+                            : 
+                            <>
+                                <Link href='/user/dashboard'> <li className={styles.dropdownItem}> Dashboard </li> </Link>
+                                <Link href='/user/searchjob'><li className={styles.dropdownItem}>Search</li></Link>
+                                <span className={[styles.horizontalBar, styles.dropdownItem].join(" ")}></span>
+                                <Link href='/user/editprofile'><li className={styles.dropdownItem}>Settings</li></Link>
+                                <Link href='/user/editprofessionalprofile'>  <li className={styles.dropdownItem}>Professional settings</li> </Link>
+                            </>}
                         <span className={[styles.horizontalBar, styles.dropdownItem].join(" ")}></span>
                         <li className={[styles.dropdownItem, styles.exitButton].join(" ")} onClick={() => signOut()}>Sair</li>
                     </ul>
