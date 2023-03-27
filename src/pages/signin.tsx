@@ -53,7 +53,7 @@ export default function SignIn({ providers }: { providers: any }) {
                 </span>
 
                 <div className={styles.buttonarea}>
-                  <button className={styles.loginButton} type="submit">Login</button>
+                  <button className={styles.loginButton} type="submit" onClick={() => signIn("credentials", {email: "a@a.com.br", password: "123abc"})} >Login</button>
                 </div>
 
                 <span className={styles.registerArea}>

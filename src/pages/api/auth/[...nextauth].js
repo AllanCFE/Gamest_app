@@ -11,7 +11,7 @@ export default NextAuth({
         }),
         CredentialsProvider({
             id: 'credentials',
-            name: 'Credentials',
+            name: 'credentials',
             credentials: {
                 email: {
                     label: 'E-mail',
@@ -26,7 +26,7 @@ export default NextAuth({
                     password: credentials.password
                 };
 
-                if (user.email == 'a@a.com.br' && user.password == '123') {
+                if (user.email == 'a@a.com.br' && user.password == '123abc') {
                     return user
                 }
                 return null
@@ -48,6 +48,7 @@ export default NextAuth({
     callbacks: {
         async jwt({ token, user, account }) {
             if (account && user) {
+                console.log(token);
             return {
                 ...token,
                 accessToken: user.token,
