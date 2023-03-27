@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { FirestoreAdapter } from "@next-auth/firebase-adapter"
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { auth, signInWithEmailAndPassword } from "../../../../Firebase/Firebase.config";
 
 export default NextAuth({
     providers: [
@@ -21,15 +22,17 @@ export default NextAuth({
                 password: { label: 'Password', type: 'password' }
             },
             async authorize(credentials, req) {
-                const user = {
-                    email: credentials.email,
-                    password: credentials.password
-                };
-
-                if (user.email == 'a@a.com.br' && user.password == '123abc') {
-                    return user
+                // Try/catch block using signInWithEmailAndPassword
+                try {
+                    console.log(credentials)
+                    const user = await signInWithEmailAndPassword(auth, credentials.email, credentials.password);
+                    return user;
                 }
-                return null
+                catch (error) {
+                    console.log(error);
+                    throw new Error(error);
+                }
+                
             }
         }),
     ],

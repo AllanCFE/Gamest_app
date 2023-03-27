@@ -12,6 +12,19 @@ import loginImage from '../../public/login_img.png'
 import GoogleLogo from '../../public/SignIn/Google.png'
 
 export default function SignIn({ providers }: { providers: any }) {
+  const [formValues, setFormValues] = useState({ email: "", password: "" });
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormValues((prevState) => ({ ...prevState, [name]: value }));
+  };
+  
+  const handleEmailSignIn = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault(); // previne o comportamento padrão de submeter o formulário
+  
+    signIn("credentials", { ...formValues, callbackUrl: "/company/dashboard"});
+  };
+  
 
   return (
     <>
@@ -23,7 +36,7 @@ export default function SignIn({ providers }: { providers: any }) {
             </div>
 
             <div className={styles.form}>
-              <form>
+              <form onSubmit={handleEmailSignIn}>
 
                 <div className={styles.inputDiv}>
                   <label htmlFor="email" className={styles.label}>
@@ -34,6 +47,8 @@ export default function SignIn({ providers }: { providers: any }) {
                     name="email"
                     placeholder="email@example.com"
                     className={styles.inputSpace}
+                    value={formValues.email}
+                    onChange={handleInputChange}
                   />
                 </div>
 
@@ -46,6 +61,8 @@ export default function SignIn({ providers }: { providers: any }) {
                     name="password"
                     placeholder="password"
                     className={styles.inputSpace}
+                    value={formValues.password}
+                    onChange={handleInputChange}
                   />
                 </div>
                 <span className={styles.forgotPassword}>
@@ -53,7 +70,7 @@ export default function SignIn({ providers }: { providers: any }) {
                 </span>
 
                 <div className={styles.buttonarea}>
-                  <button className={styles.loginButton} type="submit" onClick={() => signIn("credentials", {email: "a@a.com.br", password: "123abc"})} >Login</button>
+                  <button className={styles.loginButton} type="submit">Login</button>
                 </div>
 
                 <span className={styles.registerArea}>
