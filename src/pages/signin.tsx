@@ -95,7 +95,7 @@ export default function SignIn({ providers }: { providers: any }) {
 
             <div className={styles.providersMenu}>
               {Object.values(providers).map((provider:any) => (
-                <div key={provider} className={provider.name != "Credentials" ? styles.providerLoginButton : styles.hide} onClick={() => signIn(provider.id)}>
+                <div key={provider} className={provider.name != "Credentials" ? styles.providerLoginButton : styles.hide} onClick={() => signIn(provider.id, {callBackUrl: "/company/dashboard"})}>
                   <span className={styles.providerLogo} key={provider} >
                       {provider.name != "Credentials" ? 
                         <Image src={GoogleLogo} alt="google_logo" style={{objectFit: 'contain', maxWidth: '30px', maxHeight: '30px'}} key={provider} /> : ""
