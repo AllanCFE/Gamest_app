@@ -9,7 +9,7 @@ export default NextAuth({
         GoogleProvider({
             clientId: process.env.GOOGLE_ID,
             clientSecret: process.env.GOOGLE_SECRET,
-            checks: console.log("Google")
+            checks: console.log("Google") // Don't delete this line
         }),
         CredentialsProvider({
             id: 'credentials',
@@ -50,15 +50,25 @@ export default NextAuth({
     callbacks: {
         async jwt({ token, user, account }) {
             if (account && user) {
+                if(account.provider == "credentials") {
+                    var aT = user.user.stsTokenManager.accessToken;
+                    var aTE = user.user.stsTokenManager.expirationTime;
+                    var rT = user.user.refreshToken;
+                    var uID = user.user.uid;
+                } else {
+                    var aT = account.access_token;
+                    var aTE = account.expires_at;
+                    var rT = account.refreshToken;
+                    var uID = user.id;
+                }
+
+
             return {
                 ...token,
-                accessToken: user._tokenResponse.idToken,
-                refreshToken: user._tokenResponse.refreshToken,
-                accessTokenExpires: user._tokenResponse.expiresIn,
-                email: user.user.email,
-                name: user.user.displayName,
-                image: user.user.photoURL,
-                id: user.user.uid,
+                accessToken: aT,
+                accessTokenExpires: aTE,
+                refreshToken: rT,
+                uid: uID
             };
             }
             return token;
@@ -68,14 +78,10 @@ export default NextAuth({
             session.user.accessToken = token.accessToken;
             session.user.refreshToken = token.refreshToken;
             session.user.accessTokenExpires = token.accessTokenExpires;
-            session.user.email = token.email;
-            session.user.name = token.name;
-            session.user.image = token.image;
-            session.user.id = token.id;
+            session.user.uid = token.uid;
             session.user.role = "user";
 
-            console.log("session", session)
-
+            console.log(session)
             return session;
         },
     },

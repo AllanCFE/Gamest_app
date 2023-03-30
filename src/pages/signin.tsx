@@ -22,7 +22,7 @@ export default function SignIn({ providers }: { providers: any }) {
   const handleEmailSignIn = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // previne o comportamento padrão de submeter o formulário
   
-    signIn("credentials", { ...formValues, callbackUrl: "/company/dashboard"});
+    signIn("credentials", { ...formValues});
   };
   
 
