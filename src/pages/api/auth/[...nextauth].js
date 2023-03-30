@@ -25,12 +25,10 @@ export default NextAuth({
             async authorize(credentials, req) {
                 // Try/catch block using signInWithEmailAndPassword
                 try {
-                    console.log(credentials)
                     const user = await signInWithEmailAndPassword(auth, credentials.email, credentials.password);
                     return user;
                 }
                 catch (error) {
-                    console.log(error);
                     throw new Error(error);
                 }
                 
@@ -52,14 +50,17 @@ export default NextAuth({
     callbacks: {
         async jwt({ token, user, account }) {
             if (account && user) {
-                console.log(token);
             return {
                 ...token,
-                accessToken: user.token,
-                refreshToken: user.refreshToken,
+                accessToken: user._tokenResponse.idToken,
+                refreshToken: user._tokenResponse.refreshToken,
+                accessTokenExpires: user._tokenResponse.expiresIn,
+                email: user.user.email,
+                name: user.user.displayName,
+                image: user.user.photoURL,
+                id: user.user.uid,
             };
             }
-
             return token;
         },
 
@@ -67,6 +68,13 @@ export default NextAuth({
             session.user.accessToken = token.accessToken;
             session.user.refreshToken = token.refreshToken;
             session.user.accessTokenExpires = token.accessTokenExpires;
+            session.user.email = token.email;
+            session.user.name = token.name;
+            session.user.image = token.image;
+            session.user.id = token.id;
+            session.user.role = "user";
+
+            console.log("session", session)
 
             return session;
         },

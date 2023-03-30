@@ -95,7 +95,7 @@ export default function SignIn({ providers }: { providers: any }) {
 
             <div className={styles.providersMenu}>
               {Object.values(providers).map((provider:any) => (
-                <div key={provider} className={provider.name != "credentials" ? styles.providerLoginButton : styles.hide} onClick={() => signIn(provider.id, {callBackUrl: "/company/dashboard"})}>
+                <div key={provider} className={provider.name != "credentials" ? styles.providerLoginButton : styles.hide} onClick={() => signIn(provider.id, {callBackUrl: "/signin"})}>
                   <span className={styles.providerLogo} key={provider} >
                       {provider.name != "Credentials" ? 
                         <Image src={GoogleLogo} alt="google_logo" style={{objectFit: 'contain', maxWidth: '30px', maxHeight: '30px'}} key={provider} /> : ""
@@ -122,12 +122,22 @@ export default function SignIn({ providers }: { providers: any }) {
 }
 
 export async function getServerSideProps(context:any) {
+  // Defines interface mySession with the user object
+  interface mySession {
+    user: {
+      name?: string;
+      email?: string;
+      image?: string;
+      role?: string;
+    };
+  }
+
   const providers = await getProviders()
   const {req,res} = context
-  const session = await getSession({req})
+  const session = await (getSession({req}) as Promise<mySession>)
 
   if(session && res){
-    res.writeHead(302, { Location: '/company/dashboard' })
+    res.writeHead(302, { Location: `/${session?.user?.role}/dashboard` })
     res.end()
   }
   return {
