@@ -3,12 +3,17 @@ import Image from 'next/image'
 import countries from 'countries-list'
 import { useRouter } from 'next/router'
 
+import { auth, db } from '../../../Firebase/Firebase.config'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { doc, updateDoc, setDoc } from 'firebase/firestore'
+
 import LeftImage from '../../../public/signup/left.png'
 import { useState } from 'react'
+import { getProviders, getSession, signIn } from 'next-auth/react'
 
-export default function SignUpCompany () {
+export default function SignUpCompany (props: any) {
     const router = useRouter()
-
+    
     const [formValues, setFormValues] = useState({ 
         name: "",
         surname: "",
@@ -47,7 +52,7 @@ export default function SignUpCompany () {
         }
 
         // Verify if the passwords match
-        if (formValues.password != formValues.confirmpassword) {
+        if (formValues.password != formValues.confirmpassword && router.query.provider == 'credentials') {
             alert("Passwords don't match");
             return;
         }
@@ -57,7 +62,7 @@ export default function SignUpCompany () {
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         // Testa a validade do email
-        if (!regex.test(formValues.email)) {
+        if (!regex.test(formValues.email) && router.query.provider == 'credentials') {
             alert("Invalid e-mail")
             return;
         }
@@ -66,23 +71,23 @@ export default function SignUpCompany () {
         let errorTexts = [];
         let error = false;
         // Verify security of password
-        if (formValues.password.length < 6) {
+        if (formValues.password.length < 6 && router.query.provider == 'credentials') {
             errorTexts.push("Password must have at least 6 characters\n");
             error = true;
         }
-        if (formValues.password.length > 30) {
+        if (formValues.password.length > 30 && router.query.provider == 'credentials') {
             errorTexts.push("Password must have at most 30 characters\n");
             error = true;
         }
-        if (!/[A-Z]/.test(formValues.password)) {
+        if (!/[A-Z]/.test(formValues.password) && router.query.provider == 'credentials') {
             errorTexts.push("Password must have at least one uppercase letter\n");
             error = true;
         }
-        if (!/[a-z]/.test(formValues.password)) {
+        if (!/[a-z]/.test(formValues.password) && router.query.provider == 'credentials') {
             errorTexts.push("Password must have at least one lowercase letter\n");
             error = true;
         }
-        if (!/[0-9]/.test(formValues.password)) {
+        if (!/[0-9]/.test(formValues.password) && router.query.provider == 'credentials') {
             errorTexts.push("Password must have at least one number\n");
             error = true;
         }
@@ -91,7 +96,52 @@ export default function SignUpCompany () {
             return;
         }
 
-        alert("Sign up successful");
+        if(router.query.provider == 'credentials'){
+            createUserWithEmailAndPassword(auth, formValues.email, formValues.password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    
+                    // Update user profile
+                    const userRef = doc(db, "users", user.uid);
+    
+                    setDoc(userRef, {
+                        name: formValues.name,
+                        surname: formValues.surname,
+                        email: formValues.email,
+                        companyname: formValues.companyname,
+                        country: formValues.country,
+                        provider: router.query.provider,
+                        role: "company"
+                    }).then(() => {
+                        // Update successful
+                        signIn("credentials", { email: formValues.email, password: formValues.password, callbackUrl: "/company/dashboard"});
+                    }).catch((error) => {
+                        // An error occurred
+                        alert(error);
+                    });
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert(`${errorMessage}`);
+                });
+        } else {
+            // Update user profile
+            const userRef = doc(db, "users", props.user.uid);
+
+            updateDoc(userRef, {
+                companyname: formValues.companyname,
+                country: formValues.country,
+                provider: router.query.provider,
+                role: "company"
+            }).then(() => {
+                // Update successful
+                router.push(`/company/dashboard`);
+            }).catch((error) => {
+                // An error occurred
+                alert(error);
+            });
+        }
     };
 
     return (
@@ -195,4 +245,23 @@ export default function SignUpCompany () {
             </div>
         </main>
     )
+}
+
+export async function getServerSideProps(context:any) {
+    // Defines interface mySession with the user object
+    interface mySession {
+        user: {
+        name?: string;
+        email?: string;
+        image?: string;
+        role?: string;
+        isNewUser?: boolean;
+        };
+    }
+    const {req,res} = context
+    const session = await (getSession({req}) as Promise<mySession>)
+
+    return {
+        props : {...session}
+    }
 }

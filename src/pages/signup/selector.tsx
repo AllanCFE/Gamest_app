@@ -28,7 +28,7 @@ export default function Selector ({ providers }: { providers: any }) {
             <div className={styles.right}>
                 <div className={styles.holder}>
                     {Object.values(providers).map((provider:any) => (
-                        <div key={provider.name} className={styles.providerLoginButton} onClick={() => provider.id == "Google" ? signIn(provider.id, {callbackUrl: `/signup/${router.query.usertype}?provider=${provider.id}`}) : router.push(`/signup/${router.query.usertype}?provider=${provider.id}`)}>
+                        <div key={provider.name} className={styles.providerLoginButton} onClick={() => provider.id == "google" ? signIn(provider.id, {callbackUrl: `/signup/${router.query.usertype}?provider=${provider.id}`}) : router.push(`/signup/${router.query.usertype}?provider=${provider.id}`)}>
                         <span className={styles.providerLogo} key={provider.name} >
                             <Image src={providersLogos[provider.name]} alt={provider.name} style={{objectFit: 'contain', maxWidth: '30px', maxHeight: '30px'}} key={provider.name} />
                         </span>
