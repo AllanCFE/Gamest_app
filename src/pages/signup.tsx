@@ -19,7 +19,7 @@ export default function signUp () {
                 </span>
                 <div className={styles.cardsArea}>
                     
-                    <Link href='/signup/company'>
+                    <Link href='/signup/selector?usertype=company'>
                         <div className={styles.card}>
                             <span>
                                 <Image src={CompanyImage} alt="signup"/>
@@ -30,7 +30,7 @@ export default function signUp () {
                         </div>
                     </Link>
 
-                    <Link href='/signup/user'>
+                    <Link href='/signup/selector?usertype=user'>
                         <div className={styles.card}>
                             <span>
                                 <Image src={UserImage} alt="signup"/>
