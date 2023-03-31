@@ -129,6 +129,7 @@ export async function getServerSideProps(context:any) {
       email?: string;
       image?: string;
       role?: string;
+      isNewUser?: boolean;
     };
   }
 
@@ -137,8 +138,13 @@ export async function getServerSideProps(context:any) {
   const session = await (getSession({req}) as Promise<mySession>)
 
   if(session && res){
-    res.writeHead(302, { Location: `/${session?.user?.role}/dashboard` })
-    res.end()
+    if(session.user.isNewUser){
+      res.writeHead(302, { Location: `/signup?provider=google` })
+      res.end()
+    } else {
+      res.writeHead(302, { Location: `/${session?.user?.role}/dashboard` })
+      res.end()
+    }
   }
   return {
     props: { providers },

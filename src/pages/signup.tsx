@@ -5,8 +5,11 @@ import LeftImage from '../../public/signup/left.png'
 import CompanyImage from '../../public/signup/company.png'
 import UserImage from '../../public/signup/user.png'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 export default function signUp () {
+    const router = useRouter();
+
     return (
         <main className={styles.main}>
             <div className={styles.left}>
@@ -19,7 +22,7 @@ export default function signUp () {
                 </span>
                 <div className={styles.cardsArea}>
                     
-                    <Link href='/signup/selector?usertype=company'>
+                    <Link href={!router.query.provider ? `/signup/selector?usertype=company` : `/signup/company?provider=${router.query.provider}`}>
                         <div className={styles.card}>
                             <span>
                                 <Image src={CompanyImage} alt="signup"/>
@@ -30,7 +33,7 @@ export default function signUp () {
                         </div>
                     </Link>
 
-                    <Link href='/signup/selector?usertype=user'>
+                    <Link href={!router.query.provider ? `/signup/selector?usertype=user` : `/signup/user?provider=${router.query.provider}`}>
                         <div className={styles.card}>
                             <span>
                                 <Image src={UserImage} alt="signup"/>

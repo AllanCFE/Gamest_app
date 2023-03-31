@@ -48,7 +48,7 @@ export default NextAuth({
         signIn: '/signin',
     },
     callbacks: {
-        async jwt({ token, user, account }) {
+        async jwt({ token, user, account, isNewUser }) {
             if (account && user) {
                 if(account.provider == "credentials") {
                     var aT = user.user.stsTokenManager.accessToken;
@@ -68,7 +68,8 @@ export default NextAuth({
                 accessToken: aT,
                 accessTokenExpires: aTE,
                 refreshToken: rT,
-                uid: uID
+                uid: uID,
+                isNewUser: isNewUser
             };
             }
             return token;
@@ -80,8 +81,8 @@ export default NextAuth({
             session.user.accessTokenExpires = token.accessTokenExpires;
             session.user.uid = token.uid;
             session.user.role = "user";
+            session.user.isNewUser = token.isNewUser;
 
-            console.log(session)
             return session;
         },
     },
