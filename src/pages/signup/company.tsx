@@ -9,7 +9,7 @@ import { doc, updateDoc, setDoc } from 'firebase/firestore'
 
 import LeftImage from '../../../public/signup/left.png'
 import { useState } from 'react'
-import { getProviders, getSession, signIn } from 'next-auth/react'
+import { getSession, signIn } from 'next-auth/react'
 
 export default function SignUpCompany (props: any) {
     const router = useRouter()
