@@ -36,6 +36,10 @@
     flex-direction: column;
 }
 
+.holderNoC {
+    height: 60%;
+}
+
 .formArea {
     display: flex;
     flex-direction: column;

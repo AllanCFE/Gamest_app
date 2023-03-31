@@ -1,3 +1,10 @@
+.hide {
+    display: none;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
 .main {
     overflow-y: hidden;
     display: flex;
@@ -34,6 +41,10 @@
     height: 90vh;
     display: flex;
     flex-direction: column;
+}
+
+.holderNoC {
+    height: 60%;
 }
 
 .formArea {
