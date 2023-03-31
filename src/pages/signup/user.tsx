@@ -5,7 +5,7 @@ import countries from 'countries-list';
 
 import LeftImage from '../../../public/signup/left.png'
 
-export default function signUpUser () {
+export default function SignUpUser () {
     const router = useRouter();
 
     return (

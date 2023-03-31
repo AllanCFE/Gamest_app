@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import LeftImage from '../../../public/signup/left.png'
 import { useState } from 'react'
 
-export default function signUpCompany () {
+export default function SignUpCompany () {
     const router = useRouter()
 
     const [formValues, setFormValues] = useState({ 

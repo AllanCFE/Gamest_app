@@ -7,7 +7,7 @@ import LeftImage from '../../../public/signup/left.png'
 import GoogleLogo from '../../../public/SignIn/Google.png'
 import CredentialsLogo from '../../../public/SignIn/Mail.png'
 
-export default function selector ({ providers }: { providers: any }) {
+export default function Selector ({ providers }: { providers: any }) {
     interface logos {
         [key: string]: StaticImageData
     }
