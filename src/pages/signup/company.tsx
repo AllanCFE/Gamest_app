@@ -70,6 +70,10 @@ export default function SignUpCompany () {
             errorTexts.push("Password must have at least 6 characters\n");
             error = true;
         }
+        if (formValues.password.length > 30) {
+            errorTexts.push("Password must have at most 30 characters\n");
+            error = true;
+        }
         if (!/[A-Z]/.test(formValues.password)) {
             errorTexts.push("Password must have at least one uppercase letter\n");
             error = true;
