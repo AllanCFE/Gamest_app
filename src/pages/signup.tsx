@@ -7,7 +7,7 @@ import UserImage from '../../public/signup/user.png'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-export default function signUp () {
+export default function SignUp () {
     const router = useRouter();
 
     return (
