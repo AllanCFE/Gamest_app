@@ -9,7 +9,7 @@ import { getSession, signIn } from 'next-auth/react'
 
 import LeftImage from '../../../public/signup/left.png'
 import { useState } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 
 export default function SignUpUser (props: any) {
     const router = useRouter();
@@ -129,8 +129,29 @@ export default function SignUpUser (props: any) {
                     alert(errorMessage);
                 });
         } else {
+            // Create auth user using local api
+            fetch('/api/google_signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: props.user.email,
+                    name: props.user.name,
+                    uid: props.user.uid
+                })
+            })
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                if(data.error){
+                    alert(data.error);
+            }})
+
+            
             // Update user data
-            const userRef = doc(db, "users", props.user.id);
+            const userRef = doc(db, "users", props.user.uid);
 
             updateDoc(userRef, {
                 birthday: formValues.birthday,
