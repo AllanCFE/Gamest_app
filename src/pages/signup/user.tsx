@@ -129,8 +129,8 @@ export default function SignUpUser (props: any) {
                     alert(errorMessage);
                 });
         } else {
-            // Create auth user using local api
-            fetch('/api/google_signup', {
+            
+            fetch('http://127.0.0.1:5001/gamest-app/us-central1/createUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -141,28 +141,30 @@ export default function SignUpUser (props: any) {
                     uid: props.user.uid
                 })
             })
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                if(data.error){
-                    alert(data.error);
-            }})
+                .then((response) => {
+                    return (response.json());
+                })
+                .then((data) => {
+                    // If there is an error, show it
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
 
-            
-            // Update user data
-            const userRef = doc(db, "users", props.user.uid);
+                    // If there is no error, sign in the user
+                    const userRef = doc(db, "users", props.user.uid);
 
-            updateDoc(userRef, {
-                birthday: formValues.birthday,
-                country: formValues.country,
-                provider: router.query.provider,
-                role: "user"
-            }).then(() => {
-                router.push('/user/dashboard')
-            }).catch((error) => {
-                alert(error);
-            });
+                    updateDoc(userRef, {
+                        birthday: formValues.birthday,
+                        country: formValues.country,
+                        provider: router.query.provider,
+                        role: "user"
+                    }).then(() => {
+                        router.push('/user/dashboard')
+                    }).catch((error) => {
+                        alert(error);
+                    });
+                })
         }
     }
 
