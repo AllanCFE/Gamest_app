@@ -130,7 +130,7 @@ export default function SignUpUser (props: any) {
                 });
         } else {
             
-            fetch('http://127.0.0.1:5001/gamest-app/us-central1/createUser', {
+            fetch('https://us-central1-gamest-app.cloudfunctions.net/createUser', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -126,21 +126,42 @@ export default function SignUpCompany (props: any) {
                     alert(`${errorMessage}`);
                 });
         } else {
-            // Update user profile
-            const userRef = doc(db, "users", props.user.uid);
 
-            updateDoc(userRef, {
-                companyname: formValues.companyname,
-                country: formValues.country,
-                provider: router.query.provider,
-                role: "company"
-            }).then(() => {
-                // Update successful
-                router.push(`/company/dashboard`);
-            }).catch((error) => {
-                // An error occurred
-                alert(error);
-            });
+            fetch('https://us-central1-gamest-app.cloudfunctions.net/createUser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: props.user.email,
+                    name: props.user.name,
+                    uid: props.user.uid
+                })
+            })
+                .then((response) => {
+                    return (response.json());
+                })
+                .then((data) => {
+                    // If there is an error, show it
+                    if (data.error) {
+                        alert(data.error);
+                        return;
+                    }
+
+                    // If there is no error, sign in the user
+                    const userRef = doc(db, "users", props.user.uid);
+
+                    updateDoc(userRef, {
+                        companyname: formValues.companyname,
+                        country: formValues.country,
+                        provider: router.query.provider,
+                        role: "company"
+                    }).then(() => {
+                        router.push('/company/dashboard')
+                    }).catch((error) => {
+                        alert(error);
+                    });
+                })
         }
     };
 
