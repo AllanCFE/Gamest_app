@@ -5,8 +5,34 @@ import Image from "next/image";
 
 import GamestLogo from '../../public/Logos/Gamest.png'
 import loginImage from '../../public/login_img.png'
+import { useState } from 'react';
+import { auth } from '../../Firebase/Firebase.config'
+import { sendPasswordResetEmail } from "firebase/auth";
 
 export default function RetrievePassword() {
+
+  const [sentMail, setSentMail] = useState<boolean>(false);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const email = e.currentTarget.email.value;
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        // Password reset email sent!
+        // ..
+        console.log("Email sent");
+        setSentMail(true);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+        console.log(errorCode, errorMessage);
+      });
+
+  }
 
   return (
     <>
@@ -17,9 +43,9 @@ export default function RetrievePassword() {
                 <Image src={GamestLogo} alt="logo" style={{objectFit: 'contain', maxHeight: '8vh'}}/>
             </div>
 
-            <div className={[styles.form, styles.hide].join(" ")}>
+            <div className={[styles.form, (sentMail) ? styles.hide : ""].join(" ")}>
                 <h1 className={styles.centralText}>Forgot my password <span style={{whiteSpace: 'nowrap'}}>:(</span></h1>
-                <form>
+                <form onSubmit={handleSubmit}>
 
                 <div className={styles.inputDiv}>
                     <label htmlFor="email" className={styles.label}>
@@ -40,7 +66,7 @@ export default function RetrievePassword() {
                 </form>
             </div>
 
-            <div className={[styles.form, styles.sentMail].join(" ")}>
+            <div className={[styles.form, styles.sentMail, (!sentMail) ? styles.hide : ""].join(" ")}>
                 <h1 className={styles.centralText}>One step closer to retrieve your password <span style={{whiteSpace: 'nowrap'}}>:)</span></h1>
                 <p>E-Mail sent to your mailbox. Be sure to check your spam folder.</p>
             </div>
