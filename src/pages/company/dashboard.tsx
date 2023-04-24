@@ -3,11 +3,33 @@ import StandardBlockDivision from 'components/StandardBlockDivision/StandardBloc
 import styles from '../../styles/company/Dashboard.module.css'
 import Image from 'next/image'
 import userRequireAuth from 'components/useRequireAuth/useRequireAuth'
+import { useEffect, useState } from 'react';
 
 export default function Dashboard () {
 
     const session = userRequireAuth();
     if (!session) return <div>Loading...</div>
+
+    // Retrieve data from API via POST request
+    const [data, setData] = useState(null);
+    const [isLoading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true);
+        fetch('/api/company/dashboard', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ id: session?.user?.id })
+        })
+        .then(res => res.json())
+        .then(data => {
+            setData(data);
+            setLoading(false);
+        })
+        
+    }, [])
 
     return (
         <>
@@ -35,32 +57,11 @@ export default function Dashboard () {
             }
             rightChildren={
                 <>
-                    <div className={styles.vacancyArea}>
-                        <div className={styles.vacancyRight}>
-                            <span className={styles.calendar}>
-                                <Image src="https://i.imgur.com/ICodYAI.png" alt="calendar" width={150} height={150} />
-                            </span>
-                            <div className={styles.vacancyDescription}>
-                                <h2>Software Developer</h2>
-                                <div className={styles.vacancyOptions}>
-                                    <div className={styles.vacancyOptionsLine}>
-                                        <p>Location: </p>
-                                        <p>Salary: </p>
-                                        <p>Experience: </p>
-                                    </div>
-                                    <div className={[styles.vacancyOptionsLine, styles.vacancyOptionValue].join(" ")}>
-                                        <p>Remote</p>
-                                        <p>$100,000</p>
-                                        <p>5 years</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={styles.vacancyLeft}>
-                            <span className={styles.editButton}>Edit</span>
-                            <span className={styles.deleteButton}>Delete</span>
-                        </div>
-                    </div>
+                    {isLoading ? 
+                        <div>Failed to load</div>
+                        :
+                        <div>Teste</div>    
+                    }
                 </>
             }
         />
@@ -69,3 +70,4 @@ export default function Dashboard () {
         </>
     )
 }
+
