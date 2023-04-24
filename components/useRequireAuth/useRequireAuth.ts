@@ -13,5 +13,18 @@ export default function useRequireAuth() {
         }
     }, [session, router]);
 
-    return session;
+    type MySession = (typeof session) & {
+        user: {
+            accessToken: string;
+            refreshToken: string;
+            accessTokenExpires: string;
+            uid: string;
+            role: string;
+            isNewUser: boolean;
+            companyname: string;
+            username: string;
+        },
+    }
+
+    return (session as MySession);
 }
