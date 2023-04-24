@@ -5,9 +5,14 @@ import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import useRequireAuth from 'components/useRequireAuth/useRequireAuth'
+
 export default function Navbar () {
     const router = useRouter();
     const userType = router.pathname[1]
+    const session = useRequireAuth();
+
+    const avatar = session?.user?.image || '/Default/Default_Avatar.png';
 
     return (
         <nav className={styles.nav}>
@@ -17,8 +22,8 @@ export default function Navbar () {
 
             <span className={styles.menuOptions}>
                 <div className={styles.dropdownArea}>
-                    <div className={[styles.option, styles.profilePicture].join(' ')} onClick={() => signOut()}>
-                        <Image src='https://github.com/AllanCFE.png' width={50} height={50} alt="Profile Picture" />
+                    <div className={[styles.option, styles.profilePicture].join(' ')}>
+                        <Image src={avatar} width={50} height={50} alt="Profile Picture" />
                         <div className={styles.rightProfilePicture}>
                             <div className={styles.notification}></div>
                             <div className={styles.arrowDown}></div>
