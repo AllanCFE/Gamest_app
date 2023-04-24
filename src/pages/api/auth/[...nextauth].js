@@ -55,11 +55,19 @@ export default NextAuth({
                     var aTE = user.user.stsTokenManager.expirationTime;
                     var rT = user.user.refreshToken;
                     var uID = user.user.uid;
+                    var role = user.user.role;
                 } else {
                     var aT = account.access_token;
                     var aTE = account.expires_at;
                     var rT = account.refreshToken;
                     var uID = user.id;
+                    var role = user.role;
+                    var username = user.name;
+
+                    if(role == "company") {
+                        var companyname = user.companyname;
+                    } else if (role == "user") {
+                    }
                 }
 
 
@@ -69,7 +77,10 @@ export default NextAuth({
                 accessTokenExpires: aTE,
                 refreshToken: rT,
                 uid: uID,
-                isNewUser: isNewUser
+                isNewUser: isNewUser,
+                role: role,
+                companyname: companyname || null,
+                username: username || null
             };
             }
             return token;
@@ -80,8 +91,10 @@ export default NextAuth({
             session.user.refreshToken = token.refreshToken;
             session.user.accessTokenExpires = token.accessTokenExpires;
             session.user.uid = token.uid;
-            session.user.role = "user";
+            session.user.role = token.role;
             session.user.isNewUser = token.isNewUser;
+            if (token.companyname) session.user.companyname = token.companyname;
+            if (token.username) session.user.username = token.username;
 
             return session;
         },
