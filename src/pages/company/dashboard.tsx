@@ -33,8 +33,6 @@ export default function Dashboard () {
 
     if (!session) return <div>Loading...</div>
 
-    console.log(data)
-
     return (
         <>
         <StandardBlockDivision 
@@ -65,7 +63,7 @@ export default function Dashboard () {
                         <div>Loading</div>
                         :
                         <>
-                            {data?.map((vacancy, index) => (
+                            {data?.map((vacancy: any, index: any) => (
                                 <div className={styles.vacancyArea} key={index}>
                                     <div className={styles.vacancyRight}>
                                         <span className={styles.calendar}>
