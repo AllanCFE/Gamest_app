@@ -15,7 +15,7 @@ export default function Dashboard () {
     useEffect(() => {
         if(typeof session != 'undefined') {
             setLoading(true);
-            fetch('http://127.0.0.1:5001/gamest-app/us-central1/getVacancys', {
+            fetch('https://us-central1-gamest-app.cloudfunctions.net/getVacancys', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
