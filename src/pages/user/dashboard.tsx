@@ -5,10 +5,14 @@ import Image from 'next/image'
 import useRequireAuth from 'components/useRequireAuth/useRequireAuth'
 import Link from 'next/link';
 
+import DefaultAvatar from '../../../public/Default/Default_Avatar.png'
+
 export default function Dashboard () {
 
     const session = useRequireAuth();
     if (!session) return <div>Loading...</div>
+
+    const avatar = session.user.image ? session.user.image : DefaultAvatar;
 
     return (
         <>
@@ -17,7 +21,7 @@ export default function Dashboard () {
                 <>
                     <div className={styles.companyTop}>
                         <span className={styles.companyLogo}>
-                            <Image src="https://github.com/AllanCFE.png" alt="Company Logo" width={200} height={200} />
+                            <Image src={avatar} alt="Company Logo" width={200} height={200} />
                         </span>
                         <span>
                             <h2>Allan Echeverria</h2>

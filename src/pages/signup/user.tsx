@@ -118,9 +118,46 @@ export default function SignUpUser (props: any) {
                         birthday: formValues.birthday,
                         country: formValues.country,
                         provider: router.query.provider,
+                        lastUpdate: new Date(),
                         role: "user"
                     }).then(() => {
-                        signIn("credentials", { email: formValues.email, password: formValues.password, callbackUrl: "/user/dashboard"});
+                        const blockedProfileRef = doc(db, "blockedProfiles", user.uid);
+                        const allowedProfileRef = doc(db, "allowedProfiles", user.uid);
+
+                        setDoc(blockedProfileRef, {
+                            lastUpdate: new Date(),
+                            birthday: formValues.birthday,
+                            workModel: null,
+                            languages: null,
+                            about: null,
+                            programming_languages: null,
+                            tools: null,
+                            initials: formValues.name.charAt(0) + formValues.surname.charAt(0)
+                        })
+                        .then(() => {
+                            setDoc(allowedProfileRef, {
+                                lastUpdate: new Date(),
+                                birthday: formValues.birthday,
+                                workModel: null,
+                                languages: null,
+                                about: null,
+                                programming_languages: null,
+                                tools: null,
+                                contact: {
+                                    email: formValues.email,
+                                    phone: null,
+                                }
+                            })
+                            .then(() => {
+                                signIn("credentials", { email: formValues.email, password: formValues.password, callbackUrl: "/user/dashboard"});
+                            })
+                            .catch((error) => {
+                                alert(error);
+                            });
+                        })
+                        .catch((error) => {
+                            alert(error);
+                        });
                     }).catch((error) => {
                         alert(error);
                     });
@@ -158,9 +195,50 @@ export default function SignUpUser (props: any) {
                         birthday: formValues.birthday,
                         country: formValues.country,
                         provider: router.query.provider,
+                        lastUpdate: new Date(),
                         role: "user"
                     }).then(() => {
-                        router.push('/user/dashboard')
+
+                        const blockedProfileRef = doc(db, "blockedProfiles", props.user.uid);
+                        const allowedProfileRef = doc(db, "allowedProfiles", props.user.uid);
+
+                        setDoc(blockedProfileRef, {
+                            lastUpdate: new Date(),
+                            birthday: formValues.birthday,
+                            workModel: null,
+                            languages: null,
+                            about: null,
+                            programming_languages: null,
+                            tools: null,
+                            initials: props.user.name.charAt(0),
+                        })
+                        .then(() => {                            
+                            setDoc(allowedProfileRef, {
+                                lastUpdate: new Date(),
+                                birthday: formValues.birthday,
+                                workModel: null,
+                                languages: null,
+                                about: null,
+                                programming_languages: null,
+                                tools: null,
+                                contact: {
+                                    email: props.user.email,
+                                    phone: null,
+                                }
+                            })
+                            .then(() => {
+                                router.push('/user/dashboard')
+                            })
+                            .catch((error) => {
+                                alert(error);
+                            });
+
+                        })
+                        .catch((error) => {
+                            alert(error);
+                        });
+
+                        
                     }).catch((error) => {
                         alert(error);
                     });
