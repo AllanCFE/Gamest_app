@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 export default function Dashboard () {
 
     // Retrieve data from API via POST request
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<object | null>(null);
     const [isLoading, setLoading] = useState(false);
     const session = userRequireAuth();
     
@@ -63,7 +63,7 @@ export default function Dashboard () {
                         <div>Loading</div>
                         :
                         <>
-                            {data?.map((vacancy: any, index: any) => (
+                            {Object.keys(data ?? {}).map((vacancy: any, index: any) => (
                                 <div className={styles.vacancyArea} key={index}>
                                     <div className={styles.vacancyRight}>
                                         <span className={styles.calendar}>
