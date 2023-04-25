@@ -7,9 +7,18 @@ import { useEffect, useState } from 'react';
 
 export default function Dashboard () {
 
+    type Vacancy = {
+        title: string;
+        location: string;
+        salary: number;
+        experience: number;
+    };
+
+    type Data = Record<string, Vacancy>;
+
     // Retrieve data from API via POST request
-    const [data, setData] = useState<object | null>(null);
-    const [isLoading, setLoading] = useState(false);
+    const [data, setData] = useState<Data | null>(null);
+    const [isLoading, setLoading] = useState(true);
     const session = userRequireAuth();
     
     useEffect(() => {
@@ -63,14 +72,14 @@ export default function Dashboard () {
                         <div>Loading</div>
                         :
                         <>
-                            {Object.keys(data ?? {}).map((vacancy: any, index: any) => (
+                            {data != null ? Object.keys(data).map((index: any) => (
                                 <div className={styles.vacancyArea} key={index}>
                                     <div className={styles.vacancyRight}>
                                         <span className={styles.calendar}>
                                             <Image src="https://i.imgur.com/ICodYAI.png" alt="calendar" width={150} height={150} />
                                         </span>
                                         <div className={styles.vacancyDescription}>
-                                            <h2>{vacancy.title}</h2>
+                                            <h2>{data[index].title}</h2>
                                             <div className={styles.vacancyOptions}>
                                                 <div className={styles.vacancyOptionsLine}>
                                                     <p>Location: </p>
@@ -78,9 +87,9 @@ export default function Dashboard () {
                                                     <p>Experience: </p>
                                                 </div>
                                                 <div className={[styles.vacancyOptionsLine, styles.vacancyOptionValue].join(" ")}>
-                                                    <p>{vacancy.location}</p>
-                                                    <p>${vacancy.salary}</p>
-                                                    <p>{vacancy.experience} years</p>
+                                                    <p>{data[index].location}</p>
+                                                    <p>${data[index].salary}</p>
+                                                    <p>{data[index].experience} years</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -90,7 +99,7 @@ export default function Dashboard () {
                                         <span className={styles.deleteButton}>Delete</span>
                                     </div>
                                 </div>
-                            ))}
+                            )) : <div>No vacancys found</div>}
                         </>
                     }
                 </>
