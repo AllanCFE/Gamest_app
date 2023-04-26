@@ -115,7 +115,7 @@ export default function SignUpUser (props: any) {
                     setDoc(userRef, {
                         name: formValues.name,
                         surname: formValues.surname,
-                        birthday: formValues.birthday,
+                        birthday: Date.parse(formValues.birthday),
                         country: formValues.country,
                         provider: router.query.provider,
                         lastUpdate: new Date(),
@@ -126,7 +126,7 @@ export default function SignUpUser (props: any) {
 
                         setDoc(blockedProfileRef, {
                             lastUpdate: new Date(),
-                            birthday: formValues.birthday,
+                            birthday: Date.parse(formValues.birthday),
                             workModel: null,
                             languages: null,
                             about: null,
@@ -137,7 +137,7 @@ export default function SignUpUser (props: any) {
                         .then(() => {
                             setDoc(allowedProfileRef, {
                                 lastUpdate: new Date(),
-                                birthday: formValues.birthday,
+                                birthday: Date.parse(formValues.birthday),
                                 workModel: null,
                                 languages: null,
                                 about: null,
@@ -192,7 +192,7 @@ export default function SignUpUser (props: any) {
                     const userRef = doc(db, "users", props.user.uid);
 
                     updateDoc(userRef, {
-                        birthday: formValues.birthday,
+                        birthday: Date.parse(formValues.birthday),
                         country: formValues.country,
                         provider: router.query.provider,
                         lastUpdate: new Date(),
@@ -204,7 +204,7 @@ export default function SignUpUser (props: any) {
 
                         setDoc(blockedProfileRef, {
                             lastUpdate: new Date(),
-                            birthday: formValues.birthday,
+                            birthday: Date.parse(formValues.birthday),
                             workModel: null,
                             languages: null,
                             about: null,
@@ -215,7 +215,7 @@ export default function SignUpUser (props: any) {
                         .then(() => {                            
                             setDoc(allowedProfileRef, {
                                 lastUpdate: new Date(),
-                                birthday: formValues.birthday,
+                                birthday: Date.parse(formValues.birthday),
                                 workModel: null,
                                 languages: null,
                                 about: null,
