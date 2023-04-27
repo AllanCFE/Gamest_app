@@ -117,7 +117,7 @@ export default function Dashboard () {
                                     }
                                     {
                                         profileInfo?.contact != null && profileInfo?.contact.email != null ?
-                                        <li><Link href={`mailto:${profileInfo?.contact.email}`}></Link>{profileInfo?.contact.email}</li>
+                                        <li><Link href={`mailto:${profileInfo?.contact.email}`}>{profileInfo?.contact.email}</Link></li>
                                         :
                                         <li>None</li>
                                     }
