@@ -14,6 +14,8 @@ import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 export default function SignUpUser (props: any) {
     const router = useRouter();
 
+    console.log(props)
+
     const [formValues, setFormValues] = useState({
         name: "",
         surname: "",
@@ -132,7 +134,8 @@ export default function SignUpUser (props: any) {
                             about: null,
                             programming_languages: null,
                             tools: null,
-                            initials: formValues.name.charAt(0) + formValues.surname.charAt(0)
+                            initials: formValues.name.charAt(0) + formValues.surname.charAt(0),
+                            image: null
                         })
                         .then(() => {
                             setDoc(allowedProfileRef, {
@@ -146,7 +149,8 @@ export default function SignUpUser (props: any) {
                                 contact: {
                                     email: formValues.email,
                                     phone: null,
-                                }
+                                },
+                                image: null
                             })
                             .then(() => {
                                 signIn("credentials", { email: formValues.email, password: formValues.password, callbackUrl: "/user/dashboard"});
@@ -211,6 +215,7 @@ export default function SignUpUser (props: any) {
                             programming_languages: null,
                             tools: null,
                             initials: props.user.name.charAt(0),
+                            image: null
                         })
                         .then(() => {                            
                             setDoc(allowedProfileRef, {
@@ -224,7 +229,8 @@ export default function SignUpUser (props: any) {
                                 contact: {
                                     email: props.user.email,
                                     phone: null,
-                                }
+                                },
+                                image: props.user.image
                             })
                             .then(() => {
                                 router.push('/user/dashboard')
