@@ -36,6 +36,7 @@
     width: 100%;
     height: 1px;
     background-color: var(--border-color);
+    margin: 10px 0;
 }
 
 .infoArea {
@@ -77,6 +78,22 @@
 .scrollBar {
     overflow-y: scroll;
     height: 100%;
+}
+
+.buyProfileButton {
+    width: 100%;
+    height: 40px;
+    background-color: var(--background-content-color);
+    border: 1px solid var(--blue-color);
+    color: var(--blue-color);
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Right area */
@@ -122,9 +139,9 @@
 
 .toolArea {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     height: 100%;
     width: 110px;
     margin-right: 5px;
@@ -137,7 +154,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-left: 10px;
 }
 
 /* History area */
@@ -148,7 +164,7 @@
     height: fit-content;
     border: 1px solid var(--border-color);
     border-radius: 10px;
-    padding: 10px 20px;
+    padding: 15px 20px;
     width: 100%;
 }
 
@@ -159,6 +175,7 @@
 
 .historyTitle {
     font-size: 1.2rem;
+    margin-bottom: 5px;
 }
 
 .historyDataFrame {
@@ -167,6 +184,7 @@
 
 .historyItemBody {
     margin-top: 10px;
+    text-align: justify;
 }
 
 /* Blocked class */
@@ -184,7 +202,22 @@
     filter: blur(20px);
 }
 
+/* Not available area */
+.notAvailableArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 450px;
+    background-color: var(--background-content-color);
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: calc(50vh - 100px);
+}
 
+/* Responsive area */
 @media (max-width: 800px) {
     .horizontalBar {
         width: 1px;
@@ -214,3 +247,4 @@
         height: fit-content;
     }
 }
+

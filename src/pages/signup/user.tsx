@@ -150,7 +150,9 @@ export default function SignUpUser (props: any) {
                                     email: formValues.email,
                                     phone: null,
                                 },
-                                image: null
+                                image: null,
+                                professional_history: null,
+                                name: formValues.name + " " + formValues.surname,
                             })
                             .then(() => {
                                 signIn("credentials", { email: formValues.email, password: formValues.password, callbackUrl: "/user/dashboard"});
@@ -230,7 +232,9 @@ export default function SignUpUser (props: any) {
                                     email: props.user.email,
                                     phone: null,
                                 },
-                                image: props.user.image
+                                image: props.user.image,
+                                professional_history: null,
+                                name: props.user.name,
                             })
                             .then(() => {
                                 router.push('/user/dashboard')
