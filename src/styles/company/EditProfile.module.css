@@ -48,6 +48,10 @@
     background-color: var(--border-color);
 }
 
+.newSection {
+    margin: 20px 0;
+}
+
 .lastUpdated {
     font-size: 0.7rem;
 }
@@ -74,7 +78,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
     margin-right: 5px;
 }
 

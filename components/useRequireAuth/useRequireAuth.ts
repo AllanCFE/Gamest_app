@@ -24,6 +24,10 @@ export default function useRequireAuth() {
             companyname: string;
             username: string;
             country: string;
+            email: string;
+            provider: string;
+            phone: string;
+            employees_number: number;
         },
     }
 

@@ -59,9 +59,12 @@ export default NextAuth({
                     var username = user.user.name;
                     var country = user.user.country;
                     var email = user.user.email;
+                    var provider = "credentials";
 
                     if(role == "company") {
                         var companyname = user.user.companyname;
+                        var phone = user.user.phone;
+                        var employees_number = user.user.employees_number;
                     } else if (role == "user") {
                     }
                     
@@ -79,6 +82,8 @@ export default NextAuth({
                         country = data.country;
                         if(role == "company") {
                             companyname = data.companyname;
+                            phone = data.phone;
+                            employees_number = data.employees_number;
                         }
                     })
                     .catch((error) => {
@@ -93,9 +98,12 @@ export default NextAuth({
                     var username = user.name;
                     var country = user.country;
                     var email = user.email;
+                    var provider = "Google";
 
                     if(role == "company") {
                         var companyname = user.companyname;
+                        var phone = user.phone;
+                        var employees_number = user.employees_number;
                     } else if (role == "user") {
                     }
                 }
@@ -112,7 +120,10 @@ export default NextAuth({
                 companyname: companyname || null,
                 username: username || null,
                 country: country || null,
-                email: email || null
+                email: email || null,
+                provider: provider || null,
+                phone: phone || null,
+                employees_number: employees_number || null
             };
             }
             return token;
@@ -128,6 +139,10 @@ export default NextAuth({
             session.user.country = token.country;
             if (token.companyname) session.user.companyname = token.companyname;
             if (token.username) session.user.username = token.username;
+            if (token.email) session.user.email = token.email;
+            if (token.provider) session.user.provider = token.provider;
+            if (token.phone) session.user.phone = token.phone;
+            if (token.employees_number) session.user.employees_number = token.employees_number;
 
             return session;
         },
