@@ -56,7 +56,34 @@ export default NextAuth({
                     var rT = user.user.refreshToken;
                     var uID = user.user.uid;
                     var role = user.user.role;
+                    var username = user.user.name;
                     var country = user.user.country;
+                    var email = user.user.email;
+
+                    if(role == "company") {
+                        var companyname = user.user.companyname;
+                    } else if (role == "user") {
+                    }
+                    
+                    await fetch('http://127.0.0.1:5001/gamest-app/us-central1/getUser', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({id: uID}),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        role = data.role;
+                        username = data.surname ? data.name + " " + data.surname : data.name;
+                        country = data.country;
+                        if(role == "company") {
+                            companyname = data.companyname;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
                 } else {
                     var aT = account.access_token;
                     var aTE = account.expires_at;
@@ -65,6 +92,7 @@ export default NextAuth({
                     var role = user.role;
                     var username = user.name;
                     var country = user.country;
+                    var email = user.email;
 
                     if(role == "company") {
                         var companyname = user.companyname;
@@ -83,7 +111,8 @@ export default NextAuth({
                 role: role,
                 companyname: companyname || null,
                 username: username || null,
-                country: country || null
+                country: country || null,
+                email: email || null
             };
             }
             return token;
