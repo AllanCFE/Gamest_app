@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-import { signIn } from 'next-auth/react'
+import { getSession, signIn } from 'next-auth/react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,4 +32,30 @@ export default function Home() {
       </main>
     </>
   )
+}
+
+export async function getServerSideProps(context:any) {
+  // Defines interface mySession with the user object
+  interface mySession {
+    user: {
+      name?: string;
+      email?: string;
+      image?: string;
+      role?: string;
+      isNewUser?: boolean;
+    };
+  }
+
+  const {req,res} = context
+  const session = await (getSession({req}) as Promise<mySession>)
+
+  if(session && res){
+    if(session.user.isNewUser){
+      res.writeHead(302, { Location: `/signup?provider=google` })
+      res.end()
+    } else {
+      res.writeHead(302, { Location: `/${session?.user?.role}/dashboard` })
+      res.end()
+    }
+  }
 }
