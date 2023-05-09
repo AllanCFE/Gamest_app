@@ -58,4 +58,9 @@ export async function getServerSideProps(context:any) {
       res.end()
     }
   }
+
+  return {
+    props: {
+    }
+  }
 }
