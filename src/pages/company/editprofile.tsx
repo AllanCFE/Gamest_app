@@ -97,7 +97,7 @@ export default function EditProfile () {
                                 </span>
                                 <span className={styles.inputSpan}>
                                     <label htmlFor="responsibleemail">Email</label>
-                                    <input type="email" name="responsibleemail" id="responsibleemail" />
+                                    <input type="email" name="responsibleemail" id="responsibleemail" defaultValue={session?.user?.email as string}/>
                                 </span>
                             </div>
                         </div>
