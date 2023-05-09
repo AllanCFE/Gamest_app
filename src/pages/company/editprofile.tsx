@@ -5,10 +5,16 @@ import Image from 'next/image'
 import useRequireAuth from 'components/useRequireAuth/useRequireAuth'
 import countries from 'countries-list'
 
+import DefaultAvatar from '../../../public/Default/Default_Avatar.png'
+
 export default function EditProfile () {
 
     const session = useRequireAuth();
     if (!session) return <div>Loading...</div>
+
+    console.log(session)
+
+    const avatar = session?.user?.image || DefaultAvatar;
 
     return (
         <>
@@ -17,7 +23,7 @@ export default function EditProfile () {
                 <>
                     <div className={styles.companyTop}>
                         <span className={styles.companyLogo}>
-                            <Image src="https://github.com/AllanCFE.png" alt="Company Logo" width={200} height={200} />
+                            <Image src={avatar} alt="Company Logo" width={200} height={200} />
                         </span>
                         <span>
                             <h2>Allan Echeverria</h2>
@@ -39,13 +45,13 @@ export default function EditProfile () {
                             <div className={styles.formLine}>
                                 <span className={styles.inputSpan}>
                                     <label htmlFor="name">Company Name</label>
-                                    <input type="text" name="name" id="name" />
+                                    <input type="text" name="name" id="name" defaultValue={session?.user?.companyname}/>
                                 </span>
 
                                 <span className={styles.inputSpan}>
                                     <label htmlFor="country">Country</label>
                                     <select name="country" id="country">
-                                        <option value="">Select a country</option>
+                                        <option value={session?.user?.country}>{session?.user?.country}</option>
                                         {Object.keys(countries.countries).map((id) => {
                                             const countryObj = (countries.countries as any)[id]
                                             const countryName = (countryObj.name as string)
@@ -58,35 +64,10 @@ export default function EditProfile () {
                             <div className={styles.formLine}>
                                 <span className={styles.inputSpan}>
                                     <label htmlFor="email">Email</label>
-                                    <input type="email" name="email" id="email" />
+                                    <input type="email" name="email" id="email" defaultValue={ session?.user?.email as string }/>
                                 </span>
                             </div>
 
-                            <div className={styles.horizontalBar}></div>
-                        </div>
-
-                        <div className={styles.formGroup}>
-                            <h2>Update password</h2>
-
-                            <div className={styles.formLine}>
-                                <span className={styles.inputSpan}>
-                                    <label htmlFor="currentpassword">Current Password</label>
-                                    <input type="password" name="currentpassword" id="currentpassword" />
-                                </span>
-
-                            </div>
-
-                            <div className={styles.formLine}>
-                                <span className={styles.inputSpan}>
-                                    <label htmlFor="newpassword">New Password</label>
-                                    <input type="password" name="newpassword" id="newpassword" />
-                                </span>
-                                <span className={styles.inputSpan}>
-                                    <label htmlFor="repeatnewpassword">Repeat New Password</label>
-                                    <input type="password" name="repeatnewpassword" id="repeatnewpassword" />
-                                </span>
-                            </div>
-                            
                             <div className={styles.horizontalBar}></div>
                         </div>
 
@@ -112,7 +93,7 @@ export default function EditProfile () {
                             <div className={styles.formLine}>
                                 <span className={styles.inputSpan}>
                                     <label htmlFor="responsiblename">Name</label>
-                                    <input type="text" name="responsiblename" id="responsiblename" />
+                                    <input type="text" name="responsiblename" id="responsiblename" defaultValue={session?.user?.username} />
                                 </span>
                                 <span className={styles.inputSpan}>
                                     <label htmlFor="responsibleemail">Email</label>
@@ -124,6 +105,33 @@ export default function EditProfile () {
                         <span>
                             <button className={styles.submitFormButton} type="submit">Save</button>
                         </span>
+                    </form>
+
+                    <form>
+                        <div className={styles.formGroup}>
+                            <h2>Update password</h2>
+
+                            <div className={styles.formLine}>
+                                <span className={styles.inputSpan}>
+                                    <label htmlFor="currentpassword">Current Password</label>
+                                    <input type="password" name="currentpassword" id="currentpassword" />
+                                </span>
+
+                            </div>
+
+                            <div className={styles.formLine}>
+                                <span className={styles.inputSpan}>
+                                    <label htmlFor="newpassword">New Password</label>
+                                    <input type="password" name="newpassword" id="newpassword" />
+                                </span>
+                                <span className={styles.inputSpan}>
+                                    <label htmlFor="repeatnewpassword">Repeat New Password</label>
+                                    <input type="password" name="repeatnewpassword" id="repeatnewpassword" />
+                                </span>
+                            </div>
+                            
+                            <div className={styles.horizontalBar}></div>
+                        </div>
                     </form>
                     
                 </div>

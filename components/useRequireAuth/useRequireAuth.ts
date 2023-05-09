@@ -23,6 +23,7 @@ export default function useRequireAuth() {
             isNewUser: boolean;
             companyname: string;
             username: string;
+            country: string;
         },
     }
 

@@ -56,6 +56,7 @@ export default NextAuth({
                     var rT = user.user.refreshToken;
                     var uID = user.user.uid;
                     var role = user.user.role;
+                    var country = user.user.country;
                 } else {
                     var aT = account.access_token;
                     var aTE = account.expires_at;
@@ -63,6 +64,7 @@ export default NextAuth({
                     var uID = user.id;
                     var role = user.role;
                     var username = user.name;
+                    var country = user.country;
 
                     if(role == "company") {
                         var companyname = user.companyname;
@@ -80,7 +82,8 @@ export default NextAuth({
                 isNewUser: isNewUser,
                 role: role,
                 companyname: companyname || null,
-                username: username || null
+                username: username || null,
+                country: country || null
             };
             }
             return token;
@@ -93,6 +96,7 @@ export default NextAuth({
             session.user.uid = token.uid;
             session.user.role = token.role;
             session.user.isNewUser = token.isNewUser;
+            session.user.country = token.country;
             if (token.companyname) session.user.companyname = token.companyname;
             if (token.username) session.user.username = token.username;
 
