@@ -102,7 +102,7 @@ export default function EditProfile () {
         }
 
 
-        fetch('http://127.0.0.1:5001/gamest-app/us-central1/updateUser', {
+        fetch('https://us-central1-gamest-app.cloudfunctions.net/updateCompanyProfile', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -158,7 +158,7 @@ export default function EditProfile () {
             }
         }
 
-        fetch('http://127.0.0.1:5001/gamest-app/us-central1/updatePassword', {
+        fetch('https://us-central1-gamest-app.cloudfunctions.net/updatePassword', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

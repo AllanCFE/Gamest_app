@@ -80,9 +80,9 @@ export default NextAuth({
                         role = data.role;
                         username = data.surname ? data.name + " " + data.surname : data.name;
                         country = data.country;
+                        phone = data.phone;
                         if(role == "company") {
                             companyname = data.companyname;
-                            phone = data.phone;
                             employees_number = data.employees_number;
                         }
                     })
@@ -90,6 +90,10 @@ export default NextAuth({
                         console.error('Error:', error);
                     });
                 } else {
+                    console.log("Account");
+                    console.log(account);
+                    console.log("user");
+                    console.log(user)
                     var aT = account.access_token;
                     var aTE = account.expires_at;
                     var rT = account.refreshToken;
@@ -99,12 +103,18 @@ export default NextAuth({
                     var country = user.country;
                     var email = user.email;
                     var provider = "Google";
+                    var phone = user.phone;
 
                     if(role == "company") {
                         var companyname = user.companyname;
-                        var phone = user.phone;
                         var employees_number = user.employees_number;
                     } else if (role == "user") {
+                        var linkedin = user.linkedin;
+                        var github = user.github;
+                        var portfolio = user.portfolio;
+                        var localization = user.localization;
+                        var bio_text = user.bio_text;
+                        var gender = user.gender;
                     }
                 }
 
@@ -123,7 +133,13 @@ export default NextAuth({
                 email: email || null,
                 provider: provider || null,
                 phone: phone || null,
-                employees_number: employees_number || null
+                employees_number: employees_number || null,
+                linkedin: linkedin || null,
+                github: github || null,
+                portfolio: portfolio || null,
+                localization: localization || null,
+                bio_text: bio_text || null,
+                gender: gender || null
             };
             }
             return token;
@@ -143,6 +159,12 @@ export default NextAuth({
             if (token.provider) session.user.provider = token.provider;
             if (token.phone) session.user.phone = token.phone;
             if (token.employees_number) session.user.employees_number = token.employees_number;
+            if (token.linkedin) session.user.linkedin = token.linkedin;
+            if (token.github) session.user.github = token.github;
+            if (token.portfolio) session.user.portfolio = token.portfolio;
+            if (token.localization) session.user.localization = token.localization;
+            if (token.bio_text) session.user.bio_text = token.bio_text;
+            if (token.gender) session.user.gender = token.gender;
 
             return session;
         },

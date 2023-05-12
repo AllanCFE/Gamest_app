@@ -28,6 +28,12 @@ export default function useRequireAuth() {
             provider: string;
             phone: string;
             employees_number: number;
+            linkedin: string;
+            github: string;
+            portfolio: string;
+            localization: string;
+            bio_text: string;
+            gender: string;
         },
     }
 
