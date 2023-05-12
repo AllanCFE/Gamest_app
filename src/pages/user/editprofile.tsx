@@ -41,7 +41,7 @@ export default function EditProfile () {
     if(isLoading) {
         setIsLoading(false);
         setFormValues({
-            name: session.user.name,
+            name: session.user.name || session.user.username,
             email: session.user.email,
             phone: session.user.phone || null,
             linkedin: session.user.linkedin || null,
@@ -70,7 +70,6 @@ export default function EditProfile () {
 
     const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-        console.log(name, value);
         setPasswordValues({ ...passwordValues, [name]: value });
     };
 

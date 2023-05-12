@@ -66,9 +66,15 @@ export default NextAuth({
                         var phone = user.user.phone;
                         var employees_number = user.user.employees_number;
                     } else if (role == "user") {
+                        var linkedin = user.user.linkedin;
+                        var github = user.user.github;
+                        var portfolio = user.user.portfolio;
+                        var localization = user.user.localization;
+                        var bio_text = user.user.bio_text;
+                        var gender = user.user.gender;
                     }
                     
-                    await fetch('http://127.0.0.1:5001/gamest-app/us-central1/getUser', {
+                    await fetch('https://us-central1-gamest-app.cloudfunctions.net/getUser', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -84,16 +90,19 @@ export default NextAuth({
                         if(role == "company") {
                             companyname = data.companyname;
                             employees_number = data.employees_number;
+                        } else {
+                            linkedin = data.linkedin;
+                            github = data.github;
+                            portfolio = data.portfolio;
+                            localization = data.localization;
+                            bio_text = data.bio_text;
+                            gender = data.gender;
                         }
                     })
                     .catch((error) => {
                         console.error('Error:', error);
                     });
                 } else {
-                    console.log("Account");
-                    console.log(account);
-                    console.log("user");
-                    console.log(user)
                     var aT = account.access_token;
                     var aTE = account.expires_at;
                     var rT = account.refreshToken;
