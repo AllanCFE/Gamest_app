@@ -293,9 +293,9 @@ export default function EditProfile () {
                                     <select name="gender" id="gender" onChange={handleSelectChange}>
                                         {genders.map((option) => {
                                             if(option.value == formValues.gender) {
-                                                return <option value={option.value} selected>{option.label}</option>
+                                                return <option key={option.value} value={option.value} selected>{option.label}</option>
                                             } else {
-                                                return <option value={option.value}>{option.label}</option>
+                                                return <option key={option.value} value={option.value}>{option.label}</option>
                                             }
                                         })}
                                     </select>
